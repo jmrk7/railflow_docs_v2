@@ -23,9 +23,9 @@ Railflow can help teams get the most out of their TestRail investment, reduce un
 >Railflow has been designed from the ground up and uses the [TestRail REST API](https://www.gurock.com/testrail/docs/api) for developing the various integrations between CICD systems and various testing frameworks. Railflow's flexible architecture allows teams to set up and configure Railflow and start seeing results in TestRail within 5 minutes.
 
 Railflow solution consists of the following parts that can be easily used across any CICD setup.
-1. [Railflow NPM package](https://www.npmjs.com/package/railflow): A simple yet powerful Command Line Interface (CLI) for exporting various types of test reports into TestRail
-2. [Jenkins Plugin](/cicd/jenkins): Jenkins plugin capable of exporting various types of test reports into TestRail
-3. [TeamCity Plugin](/cicd/teamcity): TeamCity plugin capable of exporting various types of test reports into TestRail
+1. [Railflow NPM package](https://www.npmjs.com/package/railflow): A simple yet powerful Command Line Interface (CLI) for exporting various types of test reports into TestRail. Railflow NPM can be used with any SAAS CICD applications like Github, Gitlab, CircleCI, Travis CI, etc
+2. [Jenkins Plugin](../cicd-apps/jenkins): Jenkins plugin capable of exporting various types of test reports into TestRail
+3. [TeamCity Plugin](../cicd-apps/teamcity): TeamCity plugin capable of exporting various types of test reports into TestRail
 
 ![railflow architecture](/img/arch/railflow-arch.png)
 

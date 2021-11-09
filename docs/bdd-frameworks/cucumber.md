@@ -232,7 +232,8 @@ npx railflow -k <license key> -url <testrail address> -u <username> -p <password
 ```
 
 >**NOTE**
-Adjust the Railflow arguments according to the Railflow [`Command Line Arguments`](/cli/railflow-npm#command-line-arguments) reference.
+Adjust the Railflow arguments according to the Railflow [Command Line Reference](../railflow-cli/cli-reference)
+
 
 ### Results in TestRail
 Here is the results in TestRail for the following command:
