@@ -1,0 +1,192 @@
+---
+sidebar_position: 2
+---
+
+# TeamCity
+
+## TeamCity and Testing Results
+>TeamCity is one of the most popular commercial CI applications and is used by thousands of companies all over the world. TeamCity is used to define the application build and test processes. QA teams also use TeamCity to run/schedule functional tests across a variety of tools and frameworks. However, the results of these tests can only be viewed in TeamCity and it is not really possible to aggregate results across multiple jobs, retain long history, and delegate test failures to your team.  
+
+## TestRail + TeamCity + Railflow 
+>By using Railflow, you can easily integrate TeamCity testing jobs with TestRail and automatically export all testing reports to TestRail. Aggregating result from all your TeamCity jobs into TestRail allows teams to look at test trends, auto-assign failures via Railflow automation, create link between TeamCity and TestRail, and much more. 
+
+
+## Simple and Flexible Setup
+>Railflow can be used within TeamCity in a variety of ways. 
+* Railflow TeamCity Plugin
+* Railflow NPM Package
+* Docker Image using the Railflow NPM package
+
+
+## TeamCity Plugin (option 1)
+>Railflow TeamCity plugin is a typical TeamCity plugin. However, because Railflow is a commercial product, the plugin is not available in the TeamCity plugin marketplace but can be downloaded from our Downloads page.
+
+### Installation
+
+1. Download [Railflow TeamCity Plugin](https://railflow.io/resources/downloads)
+2. Install the plugin via TeamCity's Plugin Administration menu. Install the Railflow plugin and then restart TeamCity.
+![TeamCity install](/img/cicd/teamcity/install-1.png)
+![TeamCity install](/img/cicd/teamcity/install-2.png)
+
+### Configuration
+To configure plugin, navigate to `TeamCity Administration` &#x2192 `Railflow` section 
+![TeamCity configure](/img/cicd/teamcity/teamcity-global-config.png)
+
+
+### Licensing 
+>Railflow provides two license activation models. If your network allows outbound call to our api endpoint: `https://api.railflow.io`, then option 1: `License Key (online activation) ` will work. If you are unable to reach our api endpoint, pick option 2: `License File (offline activation)`.
+
+1. **License Key** (online activation): Select `License Key` option and copy/paste the license key from your email and click `Activate License`
+![TeamCity online activation](/img/cicd/jenkins/online-activation.png)
+
+2. **License File** (offline activation): If your TeamCity instance does not have outbound internet access, you may use this option to upload the license activation from your email. The license file has a .skm extension.
+![TeamCity offline activation](/img/cicd/jenkins/offline-license-activation.png)
+
+### TestRail Configuration
+Railflow plugin configuration section allows you to centrally defined one or multiple TestRail servers. Once configured, they can be easily referenced in the TeamCity jobs. 
+
+![TeamCity multiple config](/img/cicd/teamcity/teamcity-multiple-config.png)
+
+### Project Configuration
+>Once the plugin has been configured, you can easily configure any TeamCity project that is running any testing tool/framework. Simply follow the steps below
+
+1. Add and configure the Railflow Build Step: `Railflow Plugin: TestRail Test Results Processor`. This build step allows you to specify your test framework, test results location, and other TestRail configurations.
+
+![TeamCity project config](/img/cicd/teamcity/teamcity-project-config.png)
+
+
+### Build Step Reference
+>The Railflow build step provides a host of options to allow users to set up the TeamCity integration per their needs. The reference describes all the options and their usage.
+
+
+| Field Name                       | Required | Description                                                                                                                                                                                                                                                                                                                                                                                       |
+|----------------------------------|----------|-------------|
+| TestRail Server 	               | Yes	| Select one of the server names configured in "Global settings configuration"	|
+| TestRail Project                 | Yes   | The name of a project in TestRail to which results should be exported			|
+| Fail build if upload unsuccessful| N/A      | If checked, the build will be marked as failed if for any reason the plugin could not upload the results. This could be due to Railflow issues, TestRail server issues, network issues, etc.	|
+| Override TestRail Credentials	   | No	| If specified, it overrides TestRail user credentials defined in Global Configuration	|
+| Results File Pattern   | Yes      | The file path to the test report file(s) generated during the build. Ant-style patterns such as **\*\*/surefire-reports/\*.xml** can be used.<br/>E.g. use **target/surefire-reports/*.xml** to capture all XML files in **target/surefire-reports** directory.	|
+| Report Format            | Yes      | Results file format	|
+| Test Case Path				   | Yes | Path to where Railflow should upload test case definitions, must contain suite name in the beginning (for single-suite project, suite name is always 'Master'), e.g. Master/Section1/Section2 |
+| Test Plan Name     | No       | Name of a test plan in TestRail to which test results will be added |
+| Test Run Name     | No       | Name of a test run in TestRail to which test results will be added |
+| Milestone Path      | No       | Path to a milestone in TestRail to which test run/plan will be added.<br/>E.g. Milestone1/Milestone2 |
+| Smart Test Failure Assignment  |	No	| A comma separated list of user emails for smart failure assignment. Each failed result will be assigned to a person from this list in a round robin fashion<br/>|
+| Log Level | No | Logging level for the plugin log file (.railflow.log) |
+| Test Case Type   | No              | Name of a case type in TestRail, e.g. `Automated` |
+| Test Case Priority   | No           | Name of a case priority in TestRail, e.g. `High` |
+| Test Case Template   | No          | Name of a TestRail template. If it is blank, `Test Case (Steps)` will be used. |
+| Test Case Custom Fields  | No      |  Values for case fields in TestRail can be specified in this field. The format is [TestRail field label]=[value] and each field name\\value pair should start with the new line.<br/>E.g.:<br/>Custom Field One=foo<br/>Custom Field Two=bar |
+| Test Result Custom Fields | No     | Values for result fields in TestRail can be specified in this field. The format is [TestRail field label]=[value] and each field name\\value pair should start with the new line.<br/>E.g.:<br/>Custom Result Field One=foo<br/>Custom Result Field Two=bar |
+| Configuration Names   | No        | A list of configuration names in TestRail. The format is [Config Group Name]/[Config Name]. Each entry must start with the new line.<br/>E.g.:<br/>Operating Systems/Linux<br/>Browsers/Chrome|
+| Test case  to ID map  | No         | A list of test name to TestRail ID mappings. Each line contains a mapping between fully-qualified test case name and TestRail ID.<br/>E.g.: io.railflow.Test.method1=42<br/>io.railflow.Test.method2=43|
+| Disable Grouping	 | No          | If checked, Railflow will ignore structure in report files and upload all test cases into one Section, defined by the Test Path parameter. |
+| Close Run			 | No         | If checked, Railflow will close the test run in TestRail and archive its tests and results |
+| Close Plan		| No            | If checked, Railflow will close the test plan in TestRail and archive its tests and results |
+
+>
+To ensure that test results are posted to TestRail even if the TeamCity build fails (very common), set `Execute step` field to `Even if some of the previous steps failed`. 
+![TeamCity plugin](/img/cicd/teamcity/teamcity-execute-step.png)
+
+### TestRail Export Details
+>Railflow creates a very rich and flexible integration between TeamCity and TestRail. Based on Railflow configuration, TestRail entities can be created or updated automatically as part of your CICD process. The screenshots below shows the output of processing a typical JUnit test framework report. 
+
+**TeamCity console output:**  
+![TeamCity plugin](/img/cicd/teamcity/teamcity-output.png)
+
+**Automatic Test Creation:**  
+![TeamCity plugin](/img/cicd/jenkins/plugin-exec-3.png)
+
+**Automatic Test Plan and Runs:**
+![TeamCity plugin](/img/cicd/jenkins/plugin-exec-4.png)
+![TeamCity plugin](/img/cicd/jenkins/plugin-exec-5.png)
+
+**Test Results Details:**
+![TeamCity plugin](/img/cicd/jenkins/plugin-exec-6.png)
+
+**Automatic Milestones:**
+![TeamCity plugin](/img/cicd/jenkins/plugin-exec-7.png)
+
+### Smart Failure Assignment
+>Smart Failure assignment is a very powerful feature of Railflow and allows teams to efficiently and strategically assign test failures to specified team members. Doing this automatically as part of the CI process means that teams don't waste valuable time during the test triage process. 
+
+>To use Smart Failure Assignment feature, the users need to have `Global Role` under `Project Access`. 
+![TeamCity plugin](/img/cicd/jenkins/smart-failure-5.png)
+
+**Example**<br/>
+Consider a TeamCity Selenium Webdriver project build is failing with 5 test failures, and 2 user configured in the `Smart Test Failure Assignment` field.
+
+![TeamCity plugin](/img/cicd/teamcity/teamcity-smart-failure.png)
+
+**Smart Assignment - TeamCity Build Logs **<br/>
+![TeamCity plugin](/img/cicd/jenkins/smart-failure-2.png)
+
+
+**Smart Assignment - TestRail Results View**<br/>
+In this example above, Railflow's Smart Assignment feature filtered all the test failures and distributed them equally across the specified users. This nifty feature greatly eliminates the manual test triage process and saves teams valuable time.
+
+![TeamCity plugin](/img/cicd/jenkins/smart-failure-3.png)
+![TeamCity plugin](/img/cicd/jenkins/smart-failure-4.png)
+
+## NPM Package (option 2)
+>If you cannot use TeamCity plugin for some reason, Railflow is also available as a NPM command line tool. You would install Railflow NPM package just like your would install any other NPM module. Railflow NPM package can be pre-installed on the TeamCity agent or you can install it at run-time. 
+
+
+[Node](https://nodejs.org) 11 or higher version is needed on the server.
+
+You can run Railflow in [TeamCity](https://jetbrains.com/teamcity/) by the following steps:
+
+1. Log in to TeamCity as `Administrator`, create project from your VCS repository, and then go to the project settings page.
+
+2. Create a new `Build Configuration`.
+![TeamCity CLI](/img/cicd/teamcity/cli01.png)
+
+3. Click on the `Build Steps` item in the left list.
+![TeamCity CLI](/img/cicd/teamcity/cli02.png)
+
+
+4. Click on the `Add Build Step` button to add a step for running unit tests.
+Here is an example for running unit tests with Maven.
+
+![TeamCity CLI](/img/cicd/teamcity/cli03.png)
+
+
+5. Click on the `Add Build Step` button again to add the step for installing Railflow.
+   1. Select `Command Line` for `Runner type`.
+   2. Fill in an appropriate name for `Step name`, such as `Install Railflow`.
+   3. Select `Even if some of the previous steps failed` for `Execute step`.
+   4. Fill in `npm install Railflow` in `Custom Script`.
+   5. Click on the `Save` button to save the settings.
+
+![TeamCity CLI](/img/cicd/teamcity/cli04.png)
+
+6. Click on the `Add Build Step` button again to Add the step for performing Railflow to upload the test results.
+   1. Select `Command Line` for `Runner type`.
+   2. Fill in an appropriate name for `Step name`, such as `Export test resuls`.
+   3. Select `Even if some of the previous steps failed` for `Execute step`.
+   4. Refer to [`Getting Started`](/) chapter to fill in the execution script for `Custom Script`.
+   5. Click on the `Save` button to save the settings.
+
+![TeamCity CLI](/img/cicd/teamcity/cli05.png)
+
+```jsx title="TeamCity Railflow CLI Example"
+npx railflow -k %RAILFLOW_KEY% -url https://testrail.server.address/ -u %TESTRAIL_CREDS_USER% -p %TESTRAIL_CREDS_PASS% -pr \"Railflow Demo\" -path Master/section1/section2 -f junit -r target/surefire-reports/*.xml -tr TestRunDemo -tp TestPlanDemo -mp Milestone1/Milestone2
+```
+
+7. Click on the `Parameters` item in the left list, and the parameter setting page will be displayed in the right area.
+
+![TeamCity CLI](/img/cicd/teamcity/cli06.png)
+
+8. The page automatically displays parameters used in any `Custom Script`.
+Specify the appropriate values for all parameters:
+   1. `RAILFLOW_KEY` - the Railflow activation key.
+   2. `TESTRAIL_CREDS_USER` - the TestRail username.
+   3. `TESTRAIL_CREDS_PASS` - the password for the TestRail user.
+
+9. When setting `RAILFLOW_KEY` and `TESTRAIL_CEDS_PASS`, click on the `Spec` - > `Edit...` on the Settings page,
+ and then set `Type` as`Password` in the pop-up page.
+
+![TeamCity CLI](/img/cicd/teamcity/cli07.png)
+![TeamCity CLI](/img/cicd/teamcity/cli08.png)
+
+
