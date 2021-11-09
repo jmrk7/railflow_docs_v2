@@ -1,0 +1,27 @@
+{
+  "unversionedId": "testing-frameworks/junit",
+  "id": "testing-frameworks/junit",
+  "isDocsHomePage": false,
+  "title": "JUnit",
+  "description": "Coming soon !!!",
+  "source": "@site/docs/testing-frameworks/junit.md",
+  "sourceDirName": "testing-frameworks",
+  "slug": "/testing-frameworks/junit",
+  "permalink": "/docs/testing-frameworks/junit",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/main/website/docs/testing-frameworks/junit.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Pytest",
+    "permalink": "/docs/testing-frameworks/pytest"
+  },
+  "next": {
+    "title": "Cucumber",
+    "permalink": "/docs/bdd-frameworks/cucumber"
+  }
+}

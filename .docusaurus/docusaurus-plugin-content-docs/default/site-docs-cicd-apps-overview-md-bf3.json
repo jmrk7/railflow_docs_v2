@@ -1,0 +1,27 @@
+{
+  "unversionedId": "cicd-apps/overview",
+  "id": "cicd-apps/overview",
+  "isDocsHomePage": false,
+  "title": "Overview",
+  "description": "What is CICD?",
+  "source": "@site/docs/cicd-apps/overview.md",
+  "sourceDirName": "cicd-apps",
+  "slug": "/cicd-apps/overview",
+  "permalink": "/docs/cicd-apps/overview",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/main/website/docs/cicd-apps/overview.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "CLI Reference",
+    "permalink": "/docs/railflow-cli/cli-reference"
+  },
+  "next": {
+    "title": "Circle CI",
+    "permalink": "/docs/cicd-apps/circleci"
+  }
+}

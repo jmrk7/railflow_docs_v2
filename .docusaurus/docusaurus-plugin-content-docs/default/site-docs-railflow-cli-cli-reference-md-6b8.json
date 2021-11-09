@@ -1,0 +1,27 @@
+{
+  "unversionedId": "railflow-cli/cli-reference",
+  "id": "railflow-cli/cli-reference",
+  "isDocsHomePage": false,
+  "title": "CLI Reference",
+  "description": "Railflow's Command Line Interface (CLI) is wrapper around the TestRail REST API and allows users to process a variety of testing framework reports from any CICD system and automatically export them to TestRail. The CLI provides a host of options so that you can display test reports per your needs.",
+  "source": "@site/docs/railflow-cli/cli-reference.md",
+  "sourceDirName": "railflow-cli",
+  "slug": "/railflow-cli/cli-reference",
+  "permalink": "/docs/railflow-cli/cli-reference",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/main/website/docs/railflow-cli/cli-reference.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Overview",
+    "permalink": "/docs/railflow-cli/overview"
+  },
+  "next": {
+    "title": "Overview",
+    "permalink": "/docs/cicd-apps/overview"
+  }
+}

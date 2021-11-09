@@ -1,0 +1,27 @@
+{
+  "unversionedId": "cicd-apps/gitlab",
+  "id": "cicd-apps/gitlab",
+  "isDocsHomePage": false,
+  "title": "Gitlab",
+  "description": "GitLab and Testing Results",
+  "source": "@site/docs/cicd-apps/gitlab.md",
+  "sourceDirName": "cicd-apps",
+  "slug": "/cicd-apps/gitlab",
+  "permalink": "/docs/cicd-apps/gitlab",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/main/website/docs/cicd-apps/gitlab.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Github",
+    "permalink": "/docs/cicd-apps/github"
+  },
+  "next": {
+    "title": "Jenkins",
+    "permalink": "/docs/cicd-apps/jenkins"
+  }
+}

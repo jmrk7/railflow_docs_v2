@@ -1,0 +1,174 @@
+{
+  "pluginId": "default",
+  "version": "current",
+  "label": "Next",
+  "banner": null,
+  "badge": false,
+  "className": "docs-version-current",
+  "isLast": true,
+  "docsSidebars": {
+    "tutorialSidebar": [
+      {
+        "type": "category",
+        "label": "Getting Started",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "link",
+            "label": "Introduction",
+            "href": "/docs/getting-started/intro"
+          }
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Railflow CLI",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "link",
+            "label": "Overview",
+            "href": "/docs/railflow-cli/overview"
+          },
+          {
+            "type": "link",
+            "label": "CLI Reference",
+            "href": "/docs/railflow-cli/cli-reference"
+          }
+        ]
+      },
+      {
+        "type": "category",
+        "label": "CICD Applications",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "link",
+            "label": "Overview",
+            "href": "/docs/cicd-apps/overview"
+          },
+          {
+            "type": "link",
+            "label": "Circle CI",
+            "href": "/docs/cicd-apps/circleci"
+          },
+          {
+            "type": "link",
+            "label": "Github",
+            "href": "/docs/cicd-apps/github"
+          },
+          {
+            "type": "link",
+            "label": "Gitlab",
+            "href": "/docs/cicd-apps/gitlab"
+          },
+          {
+            "type": "link",
+            "label": "Jenkins",
+            "href": "/docs/cicd-apps/jenkins"
+          },
+          {
+            "type": "link",
+            "label": "TeamCity",
+            "href": "/docs/cicd-apps/teamcity"
+          },
+          {
+            "type": "link",
+            "label": "Travis CI",
+            "href": "/docs/cicd-apps/travis"
+          }
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Testing Frameworks",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "link",
+            "label": "Overview",
+            "href": "/docs/testing-frameworks/overview"
+          },
+          {
+            "type": "link",
+            "label": "TestNG",
+            "href": "/docs/testing-frameworks/testng"
+          },
+          {
+            "type": "link",
+            "label": "Pytest",
+            "href": "/docs/testing-frameworks/pytest"
+          },
+          {
+            "type": "link",
+            "label": "JUnit",
+            "href": "/docs/testing-frameworks/junit"
+          }
+        ]
+      },
+      {
+        "type": "category",
+        "label": "BDD Frameworks",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "link",
+            "label": "Cucumber",
+            "href": "/docs/bdd-frameworks/cucumber"
+          }
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Legal",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "link",
+            "label": "Privacy Policy",
+            "href": "/docs/legal/privacy"
+          },
+          {
+            "type": "link",
+            "label": "Terms of Use",
+            "href": "/docs/legal/terms"
+          }
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Release Notes",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "link",
+            "label": "Jenkins Plugin",
+            "href": "/docs/release-notes/jenkins"
+          },
+          {
+            "type": "link",
+            "label": "TeamCity Plugin",
+            "href": "/docs/release-notes/teamcity"
+          },
+          {
+            "type": "link",
+            "label": "NPM CLI",
+            "href": "/docs/release-notes/cli"
+          }
+        ]
+      },
+      {
+        "type": "link",
+        "label": "Tutorial Introoo",
+        "href": "/docs/intro"
+      }
+    ]
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "/blog-520": {
+    "component": "a6aa9e1f",
+    "sidebar": "814f3328",
+    "items": [
+      {
+        "content": "7661071f"
+      },
+      {
+        "content": "f4f34a3a"
+      },
+      {
+        "content": "8717b14a"
+      },
+      {
+        "content": "925b3f96"
+      }
+    ],
+    "metadata": "b2b675dd"
+  },
+  "/blog/archive-f4c": {
+    "component": "9e4087bc",
+    "archive": "b2f554cd"
+  },
+  "/blog/first-blog-post-6c7": {
+    "component": "ccc49370",
+    "sidebar": "814f3328",
+    "content": "e273c56f"
+  },
+  "/blog/long-blog-post-f06": {
+    "component": "ccc49370",
+    "sidebar": "814f3328",
+    "content": "73664a40"
+  },
+  "/blog/mdx-blog-post-bee": {
+    "component": "ccc49370",
+    "sidebar": "814f3328",
+    "content": "59362658"
+  },
+  "/blog/tags-e13": {
+    "component": "01a85c17",
+    "sidebar": "814f3328",
+    "tags": "a7023ddc"
+  },
+  "/blog/tags/docusaurus-ddf": {
+    "component": "6875c492",
+    "sidebar": "814f3328",
+    "items": [
+      {
+        "content": "7661071f"
+      },
+      {
+        "content": "f4f34a3a"
+      },
+      {
+        "content": "8717b14a"
+      },
+      {
+        "content": "925b3f96"
+      }
+    ],
+    "metadata": "a80da1cf"
+  },
+  "/blog/tags/facebook-ede": {
+    "component": "6875c492",
+    "sidebar": "814f3328",
+    "items": [
+      {
+        "content": "7661071f"
+      }
+    ],
+    "metadata": "031793e1"
+  },
+  "/blog/tags/hello-4c2": {
+    "component": "6875c492",
+    "sidebar": "814f3328",
+    "items": [
+      {
+        "content": "7661071f"
+      },
+      {
+        "content": "8717b14a"
+      }
+    ],
+    "metadata": "30a24c52"
+  },
+  "/blog/tags/hola-752": {
+    "component": "6875c492",
+    "sidebar": "814f3328",
+    "items": [
+      {
+        "content": "925b3f96"
+      }
+    ],
+    "metadata": "e16015ca"
+  },
+  "/blog/welcome-bfa": {
+    "component": "ccc49370",
+    "sidebar": "814f3328",
+    "content": "d9f32620"
+  },
+  "/markdown-page-be1": {
+    "component": "1f391b9e",
+    "content": "393be207"
+  },
+  "/docs-c13": {
+    "component": "1be78505",
+    "versionMetadata": "935f2afb"
+  },
+  "/docs/bdd-frameworks/cucumber-53a": {
+    "component": "17896441",
+    "content": "dfc8aa9e"
+  },
+  "/docs/cicd-apps/circleci-4ce": {
+    "component": "17896441",
+    "content": "a8418a58"
+  },
+  "/docs/cicd-apps/github-dab": {
+    "component": "17896441",
+    "content": "cb181fba"
+  },
+  "/docs/cicd-apps/gitlab-fe9": {
+    "component": "17896441",
+    "content": "aa22769b"
+  },
+  "/docs/cicd-apps/jenkins-b48": {
+    "component": "17896441",
+    "content": "ea0898ae"
+  },
+  "/docs/cicd-apps/overview-2af": {
+    "component": "17896441",
+    "content": "bf3d011f"
+  },
+  "/docs/cicd-apps/teamcity-d47": {
+    "component": "17896441",
+    "content": "a605f41a"
+  },
+  "/docs/cicd-apps/travis-719": {
+    "component": "17896441",
+    "content": "352c7dd8"
+  },
+  "/docs/getting-started/intro-010": {
+    "component": "17896441",
+    "content": "6dfec84f"
+  },
+  "/docs/intro-aed": {
+    "component": "17896441",
+    "content": "0e384e19"
+  },
+  "/docs/legal/privacy-bdf": {
+    "component": "17896441",
+    "content": "d2cbfc4d"
+  },
+  "/docs/legal/terms-91f": {
+    "component": "17896441",
+    "content": "7331222f"
+  },
+  "/docs/railflow-cli/cli-reference-5bf": {
+    "component": "17896441",
+    "content": "6b8f9385"
+  },
+  "/docs/railflow-cli/overview-712": {
+    "component": "17896441",
+    "content": "9264e652"
+  },
+  "/docs/release-notes/cli-e39": {
+    "component": "17896441",
+    "content": "9a99e570"
+  },
+  "/docs/release-notes/jenkins-a05": {
+    "component": "17896441",
+    "content": "4a775a8f"
+  },
+  "/docs/release-notes/teamcity-fc1": {
+    "component": "17896441",
+    "content": "4b5333da"
+  },
+  "/docs/testing-frameworks/junit-61d": {
+    "component": "17896441",
+    "content": "e447d664"
+  },
+  "/docs/testing-frameworks/overview-1d5": {
+    "component": "17896441",
+    "content": "c8042ae7"
+  },
+  "/docs/testing-frameworks/pytest-15f": {
+    "component": "17896441",
+    "content": "cb2b9a59"
+  },
+  "/docs/testing-frameworks/testng-da2": {
+    "component": "17896441",
+    "content": "e0edd9e4"
+  },
+  "/-deb": {
+    "component": "c4f5d8e4",
+    "config": "5e9f5e1a"
+  }
+}

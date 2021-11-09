@@ -1,0 +1,27 @@
+{
+  "unversionedId": "release-notes/teamcity",
+  "id": "release-notes/teamcity",
+  "isDocsHomePage": false,
+  "title": "TeamCity Plugin",
+  "description": "Release: 2.1",
+  "source": "@site/docs/release-notes/teamcity.md",
+  "sourceDirName": "release-notes",
+  "slug": "/release-notes/teamcity",
+  "permalink": "/docs/release-notes/teamcity",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/main/website/docs/release-notes/teamcity.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Jenkins Plugin",
+    "permalink": "/docs/release-notes/jenkins"
+  },
+  "next": {
+    "title": "NPM CLI",
+    "permalink": "/docs/release-notes/cli"
+  }
+}
