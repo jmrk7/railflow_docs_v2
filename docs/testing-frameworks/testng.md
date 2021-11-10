@@ -105,7 +105,7 @@ For plain Java project which does not use Maven or Gradle, the Railflow Annotati
 
 
 ### Download Annotations Package
-Download and add `railflow-testng-annotations` jar file from Maven repository and add it to the classpath of your Java project
+[Download and add `railflow-testng-annotations`](https://search.maven.org/search?q=g:io.railflow.annotations) jar file from Maven repository and add it to the classpath of your Java project
 
 ### Add Listener to Test Class
 Add `@Listeners(value = io.railflow.annotations.testng.RailflowReporter.class)` annotation to your test class.
