@@ -3,9 +3,10 @@ sidebar_position: 2
 ---
 
 # CLI Reference
+:::info
+Railflow's Command Line Interface (CLI) is wrapper around the TestRail REST API and allows users to process a variety of testing framework reports from any CICD system and automatically export them to TestRail. The CLI provides a host of options so that you can display test reports per your needs.
 
-
-> Railflow's Command Line Interface (CLI) is wrapper around the TestRail REST API and allows users to process a variety of testing framework reports from any CICD system and automatically export them to TestRail. The CLI provides a host of options so that you can display test reports per your needs.
+:::
 
 ### Railflow CLI Requirements
 1. [NodeJS](https://nodejs.org) - v14 or higher.
@@ -23,10 +24,13 @@ $ npm install railflow
 
 
 ### CLI Command Reference
-> Note: Use double quotes for argument values with spaces. Example: --project "demo project"
+:::caution
+Use double quotes for argument values with spaces. Example: --project "demo project"
+:::
 
-> Note: Railflow CLI will automatically create tests, runs, plans, milestones, etc. if they do not exist. 
-
+:::tip
+Railflow CLI will automatically create tests, runs, plans, milestones, etc. if they do not exist. 
+:::tip
 
 
 | Key                           | Required                 | Description                                                                                                                                                 | Example                                                               |
@@ -62,31 +66,33 @@ $ npm install railflow
 | -h, --help                    | No                       | Show the help information                                                                                                                                   | -h                                                                    |
 
 
-> Railflow general usage format:
 
 ```jsx title="Railflow CLI Example"
 npx railflow -k <license key> -url <testrail address> -u <username> -p <password> -pr <project name> -path <suite name>/<section name>/<subsection name> -f junit -r <report files pattern> -tp [test plan name] -mp [milestone path]
 ```
 
 
-### Use environment variables for sensitive information   
-> In order not to expose sensitive information like license key, TestRail username and password their values can be provided with `RAILFLOW_LICENSE`, `RAILFLOW_TR_USER` and `RAILFLOW_TR_PASSWORD` environment variables.
+### Masking Sensitive Information   
+:::tip
+It is generally a good practice to use environment variables like `RAILFLOW_LICENSE`, `RAILFLOW_TR_USER` and `RAILFLOW_TR_PASSWORD` in your CICD application to make sensitive information.
 
-## Example usage
+::: 
 
-Export JUnit report into TestRail with a license key (online activation method)
+
+
+## CLI Examples
+### Export using license key
+```jsx title="Railflow CLI Example"
+npx railflow -k ABCDE-12345-FGHIJ-67890 -url https://testrail.your-server.com/ -u testrail-username -p testrail-password -pr "Railflow Demo" -path Master/section1/section2 -f junit -r target/surefire-reports/*.xml -tr TestRunDemo -tp TestPlanDemo -mp Milestone1/Milestone2 -cn Browsers/Firefox -af assignees.txt
+```
+
+### Export using license file
 ```jsx title="Railflow CLI Example"
 npx railflow -k ABCDE-12345-FGHIJ-67890 -url https://testrail.your-server.com/ -u testrail-username -p testrail-password -pr "Railflow Demo" -path Master/section1/section2 -f junit -r target/surefire-reports/*.xml -tr TestRunDemo -tp TestPlanDemo -mp Milestone1/Milestone2 -cn Browsers/Firefox -af assignees.txt
 ```
 
 
-Export JUnit report into TestRail with a license file (offline activation method)
-```jsx title="Railflow CLI Example"
-npx railflow -l /home/user/ActivationFile20201020.skm -url https://testrail.your-server.com/ -u testrail-username -p testrail-password -pr "Railflow Demo" -path Master/section1/section2 -f junit -r target/surefire-reports/*.xml -tr TestRunDemo -tp TestPlanDemo -mp Milestone1/Milestone2 -cn Browsers/Firefox -af assignees.txt
-```
-
-
-### Example result in TestRail
+### Viewing Results n TestRail
 
 ![TestRail Results](/img/cicd/testrail/02/testrail-results.png)
 

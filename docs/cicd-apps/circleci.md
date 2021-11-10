@@ -5,16 +5,21 @@ sidebar_position: 2
 # Circle CI
 
 ## Circle CI and Testing Results
->Circle CI is one of the most popular SAAS CI applications and is used by thousands of companies all over the world. Circle CI is used to define the application build and test processes. QA teams also use GitHub to run/schedule functional tests across a variety of tools and frameworks. However, the results of these tests can only be viewed in Circle CI, and it is not really possible to aggregate results across multiple jobs, retain long history, and delegate test failures to your team.  
+:::info
+Circle CI is one of the most popular SAAS CI applications and is used by thousands of companies all over the world. Circle CI is used to define the application build and test processes. QA teams also use Circle CI to run/schedule functional tests across a variety of tools and frameworks. However, the results of these tests can only be viewed in Circle CI, and it is not really possible to aggregate results across multiple jobs, retain long history, and delegate test failures to your team.  
+:::
 
-## TestRail + Circle CI + Railflow 
->By using Railflow, you can easily integrate Circle CI testing jobs with TestRail and automatically export all testing reports to TestRail. Aggregating result from all your Circle CI jobs into TestRail allows teams to look at test trends, auto-assign failures via Railflow automation, create link between GitHub and TestRail, and much more. 
-
+## TestRail + Circle CI + Railflow CLI
+:::info
+By using the Railflow CLI, you can easily integrate Circle CI testing jobs with TestRail and automatically export all testing reports to TestRail. Aggregating result from all your Circle CI jobs into TestRail allows teams to look at test trends, auto-assign failures via Railflow automation, create link between Circle CI and TestRail, and much more. 
+:::info
 
 ## Docker to the Rescue
->Railflow's Docker image can be easily incorporated within your Circle CI pipelines to quickly and easily integrate Circle CI with TestRail.
+:::tip
+[Railflow CLI Docker Image](https://hub.docker.com/r/railflow/railflow) can be easily incorporated within your Circle CI pipelines to quickly and easily integrate Circle CI with TestRail. 
+:::
 
-In this example below, we are building and publishing the test results from a TestNG project. The GitHub pipeline uses the Railflow Docker image which is available on DockerHub.
+In this example below, we are building and publishing the test results from a TestNG project. The CircleCI pipeline uses the [Railflow Docker Image](https://hub.docker.com/r/railflow/railflow) which is available on DockerHub.
 
 
 ```jsx title="Circle CI Pipeline Example"
@@ -53,7 +58,7 @@ jobs:
             | wget --verbose --header "Circle-Token: $CIRCLE_TOKEN" --input-file -
       - run:
           name: Run railflow testing
-          command: npx railflow -k $RAILFLOW_KEY -url $TESTRAIL_URL -u $RAILFLOW_USERNAME -p $RAILFLOW_PASSWORD -pr "Github-Demo" -path Demo/TestNG -f testng -a john@foo.com, jane@foo.com -r /usr/railflow/testng-results.xml -tp TestPlanName
+          command: npx railflow -k $RAILFLOW_KEY -url $TESTRAIL_URL -u $RAILFLOW_USERNAME -p $RAILFLOW_PASSWORD -pr "CircleCI-Demo" -path Demo/TestNG -f testng -a john@foo.com, jane@foo.com -r /usr/railflow/testng-results.xml -tp TestPlanName
 
 workflows:
   version: 2
@@ -87,9 +92,14 @@ workflows:
 
 
 ## Smart Failure Assignment
->Smart Failure assignment is a very powerful feature of Railflow and allows teams to efficiently and strategically assign test failures to specified team members. Doing this automatically as part of the CI process means that teams don't waste valuable time during the test triage process. 
+:::info
+Smart Failure assignment is a very powerful feature of Railflow and allows teams to efficiently and strategically assign test failures to specified team members. Doing this automatically as part of the CI process means that teams don't waste valuable time triaging test failures. 
+:::
 
->To use Smart Failure Assignment feature, the users need to have `Global Role` under `Project Access`. 
+:::note
+To use Smart Failure Assignment feature, the users need to have `Global Role` under `Project Access`.
+::: 
+
 ![smart failure](/img/cicd/jenkins/smart-failure-5.png)
 
 ### Example

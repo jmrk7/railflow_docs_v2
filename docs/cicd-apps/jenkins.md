@@ -5,66 +5,79 @@ sidebar_position: 2
 # Jenkins
 
 ## Jenkins and Testing Results
->Jenkins is one of the most popular CI applications and is used by thousands of companies all over the world. Jenkins is used to define the application build and test processes. QA teams also use Jenkins to run/schedule functional tests across a variety of tools and frameworks. However, the results of these tests can only be viewed in Jenkins, and it is not really possible to aggregate results across multiple jobs, retain long history, and delegate test failures to your team.  
+:::info
+Jenkins is one of the most popular CI applications and is used by thousands of companies all over the world. Jenkins is used to define the application build and test processes. QA teams also use Jenkins to run/schedule functional tests across a variety of tools and frameworks. However, the results of these tests can only be viewed in Jenkins, and it is not really possible to aggregate results across multiple jobs, retain long history, and delegate test failures to your team.  
+:::
 
-
-## TestRail + Jenkins + Railflow 
->By using Railflow, you can easily integrate Jenkins testing jobs with TestRail and automatically export all testing reports to TestRail. Aggregating result from all your Jenkins jobs into TestRail allows teams to look at test trends, auto-assign failures via Railflow automation, create link between Jenkins and TestRail, and much more. 
-
+## TestRail + Jenkins + Railflow CLI
+:::info
+By using the Railflow CLI, you can easily integrate Jenkins testing jobs with TestRail and automatically export all testing reports to TestRail. Aggregating result from all your Jenkins jobs into TestRail allows teams to look at test trends, auto-assign failures via Railflow automation, create link between Jenkins and TestRail, and much more. 
+:::
 
 ## Simple and Flexible Setup
->Railflow can be used within Jenkins in a variety of ways. 
+:::tip
+Railflow can be used within Jenkins in a variety of ways. 
 * Railflow Jenkins Plugin
-* Railflow NPM Package
-* Docker Image using the Railflow NPM package
-
+* Railflow CLI NPM Package
+* [Railflow CLI Docker Image](https://hub.docker.com/r/railflow/railflow) using the Railflow NPM package
+:::
 
 ## Jenkins Plugin (option 1)
->Railflow Jenkins plugin is a typical Jenkins plugin. However, because Railflow is a commercial product, the plugin is not available in the Jenkins plugin directory but can be downloaded from our Downloads page.
+:::note Plugin approach
+Railflow Jenkins plugin is a commerical product. As such, it is not availble in the Jenkins plugin directory. Railflow Jenkins plugin (hpi file) can be download from the website's download section.
+:::
 
 ### Installation
 
 1. Download [Railflow Jenkins Plugin](https://railflow.io/resources/downloads)
 2. Upload the plugin via `Manage Jenkins` &#x2192 `Manage Plugins` &#x2192 `Advanced` &#x2192 `Upload Plugin`
-    ![Jenkins plugin installation](/img/cicd/jenkins/jenkins-plugin-upload.png)
+
+![Jenkins plugin installation](/img/cicd/jenkins/jenkins-plugin-upload.png)
 3. Upload and restart Jenkins for the plugin to take effect. 
 
 ### Configuration
 To configure plugin, navigate to `Manage Jenkins` &#x2192 `Configure System` page of the Jenkins UI and scroll down to the `Railflow Global Settings` section:
-    ![Jenkins plugin config](/img/cicd/jenkins/jenkins-plugin-config.png)
+
+![Jenkins plugin config](/img/cicd/jenkins/jenkins-plugin-config.png)
 
 
 ### Licensing 
->Railflow provides two license activation models. If your network allows outbound call to our api endpoint: `https://api.railflow.io`, then option 1: `License Key (online activation) ` will work. If you are unable to reach our api endpoint, pick option 2: `License File (offline activation)`.
+:::info
+Railflow provides two license activation models. If your network allows outbound call to our api endpoint: `https://api.railflow.io`, then option 1: `License Key (online activation) ` will work. If you are unable to reach our api endpoint, pick option 2: `License File (offline activation)`.
+:::
 
 1. **License Key** (online activation): Select `License Key` option and copy/paste the license key from your email and click `Activate License`
+
 ![Jenkins plugin online activation](/img/cicd/jenkins/online-activation.png)
 
 2. **License File** (offline activation): If your Jenkins instance does not have outbound internet access, you may use this option to upload the license activation from your email. The license file has a .skm extension.
+
 ![Jenkins plugin offline activation](/img/cicd/jenkins/offline-license-activation.png)
 
 ### TestRail Configuration
 Railflow plugin configuration section allows you to centrally defined one or multiple TestRail servers. Once configured, they can be easily referenced in the Jenkins jobs. 
-[Jenkins plugin config](/img/cicd/jenkins/plugin04.png)
+
+![Jenkins plugin config](/img/cicd/jenkins/plugin04.png)
 
 
 ### Freestyle Job Configuration
->Once the plugin has been configured, you can easily configure any Jenkins job that is running any testing tool/framework. If you are using the UI based plugin approach for your jobs, simple follow these steps
+>If you are using Jenkins UI based (freestyle job) jobs to run some test frameworks/tools, you can use the Railflow plugin's UI controls to easily integrate with TestRail by following these steps.
 
-1. Add and configure the Railflow post-build action: `Railflow Plugin: TestRail Test Results Processor`. This post-build action allows you to specify your test framework, test results location, and other TestRail configurations.
+1. Add and configure the Jenkins job's post-build action: `Railflow Plugin: TestRail Test Results Processor`. Railflow's post-build action allows you to specify the test framework, test results location, and various other TestRail configurations.
+
 ![Jenkins plugin](/img/cicd/jenkins/plugin-job-1.png)
 
-A few additional configuration fields can be accessed under `Advanced`
+:::tip
+For additional TestRail export functionality, check out the `Advanced` section.
+:::
+
 ![Jenkins plugin](/img/cicd/jenkins/plugin-job-3.png)
 
-
 ### Jenkinsfile Job Configuration
->If you are using a Jenkinsfile instead of the plugin UI (example above), you can easily reference any of the Railflow functions in the Jenkinsfile and make it part of your CICD process.
-
-Here is an end-to-end example of a Jenkinsfile for building a JUnit test project and then using Railflow for processing the junit test results.
+>If you are using a Jenkinsfile to run some test frameworks/tools, you can access the same plugin functionality within the Jenkinsfile and easily integrate with TestRail by following these steps
 
 
-```jsx title="Jenkins Pipeline Example"
+```jsx title="Jenkins Pipeline Example running JUnit test project"
 pipeline {
     agent {
         label "linux"
@@ -105,10 +118,12 @@ pipeline {
 }
 ```
 
-
 ### Post-Build Action Reference
->The post-build action provides a host of options to allow users to set up the Jenkins integration per their needs. The reference describes all the options and their usage.
->You can also add multiple configurations by using the `Add More` button. 
+>Both the Jenkinsfile and Freestyle job depend on the `Railflow Plugin: TestRail Test Results Processor` post-build action to process test results and post them to TestRail. This action provides a host of options to allow users to integrate with TestRail per their requirements. The reference below describes all the options and their usage.
+
+:::tip
+You can add multiple Raillflow post-build actions using `Add More` button. This may be needed if you have multiple reports to process and want to map each report to different places in TestRail.
+:::
 
 
 | Field Name                       | Required | Description                                                                                                                                                                                                                                                                                                                                                                                       |
@@ -126,6 +141,10 @@ pipeline {
 | Smart Test Failure Assignment  |	No	| A comma separated list of user emails for smart failure assignment. Each failed result will be assigned to a person from this list in a round robin fashion<br/>|
 | Log Level | No | Logging level for the plugin log file (.railflow.log) |
 
+:::tip  Railflow: Post-Build action advanced section
+:::
+
+
 | Advanced Field Name | Description                                                                                                                                                                                                                                                                                                                                                                                       |
 |---------------------|--------------------------------------------------------------------------------------------|
 | Test Case Type            | Name of a case type in TestRail, e.g. `Automated` |
@@ -139,64 +158,25 @@ pipeline {
 | Close Run			        | If checked, Railflow will close the test run in TestRail and archive its tests and results |
 | Close Plan		        | If checked, Railflow will close the test plan in TestRail and archive its tests and results |
 
-
-### TestRail Export Details
->Railflow creates a very rich and flexible integration between Jenkins and TestRail. Based on Railflow configuration, TestRail entities can be created or updated automatically as part of your CICD process. The screenshots below shows the output of processing a typical JUnit test framework report. 
-
-**Jenkins console output:**  
-![Jenkins plugin](/img/cicd/jenkins/plugin-exec-1.png)
-
-**Automatic Test Creation:** 
-![Jenkins plugin](/img/cicd/jenkins/plugin-exec-3.png) 
-
-**Automatic Test Plan and Runs:**
-![Jenkins plugin](/img/cicd/jenkins/plugin-exec-4.png)
-![Jenkins plugin](/img/cicd/jenkins/plugin-exec-5.png)
-
-
-**Test Results Details:**
-![Jenkins plugin](/img/cicd/jenkins/plugin-exec-6.png)
-
-**Automatic Milestones:**
-![Jenkins plugin](/img/cicd/jenkins/plugin-exec-7.png)
-
-### Smart Failure Assignment
->Smart Failure assignment is a very powerful feature of Railflow and allows teams to efficiently and strategically assign test failures to specified team members. Doing this automatically as part of the CI process means that teams don't waste valuable time during the test triage process. 
-
-
->To use Smart Failure Assignment feature, the users need to have `Global Role` under `Project Access`. 
-![Jenkins plugin](/img/cicd/jenkins/smart-failure-5.png)
-
-**Example**<br/>
-Consider a Jenkins Selenium Webdriver job build is failing with 5 test failures, and 2 user configured in the `Smart Test Failure Assignment` field.
-
-![Jenkins plugin](/img/cicd/jenkins/smart-failure-1.png)
-
-**Smart Assignment - Jenkins Build Logs **<br/>
-![Jenkins plugin](/img/cicd/jenkins/smart-failure-2.png)
-
-**Smart Assignment - TestRail Results View**<br/>
-In this example above, Railflow's Smart Assignment feature filtered all the test failures and distributed them equally across the specified users. This nifty feature greatly eliminates the manual test triage process and saves teams valuable time.
-
-![Jenkins plugin](/img/cicd/jenkins/smart-failure-3.png)
-![Jenkins plugin](/img/cicd/jenkins/smart-failure-4.png)
-
-
 ## NPM Package (option 2)
->If you cannot use Jenkins plugin for some reason, Railflow is also available as a NPM command line tool. You would install Railflow NPM package just like your would install any other NPM module. Railflow NPM package can be pre-installed on the Jenkins agent, or you can install it at run-time. 
-
+:::note NPM approach
+If you cannot use Jenkins plugin for some reason, Railflow is also available as a NPM command line tool. You would install Railflow NPM package just like your would install any other NPM module. Railflow NPM package can be pre-installed on the Jenkins agent, or you can install it at run-time. 
+:::
 
 ### Jenkins pipelines
-You can run railflow in [Jenkins](https://jenkins.io/) pipeline by the following steps:<br/>
+You can run railflow in [Jenkins](https://jenkins.io/) pipeline by the following steps
 
 1. From the Jenkins home page (i.e. the Dashboard of the Jenkins classic UI), click `New Item` in the top left corner to create a new Project in Jenkins.
+
 ![Jenkins CLI](/img/cicd/jenkins/cli01.png)
 
-2. In the `Enter an item name` field, specify the name for your new project, select the `Pipeline` type and click the `OK` button.
+2. Select `Pipeline` project with some name.
+
 ![Jenkins CLI](/img/cicd/jenkins/cli02.png)
 
 
-3. Add the pipeline script in the `Script` textarea of the `Pipeline` section and click the `Save` button. See an example below:
+3a. Add the pipeline script in the `Script` textarea of the `Pipeline` section and click the `Save` button. 
+
 ![Jenkins CLI](/img/cicd/jenkins/cli03.png)
 
 
@@ -234,18 +214,18 @@ pipeline {
 }
 ```
 
-### Console Output
-![Jenkins CLI](/img/cicd/jenkins/cli15.png)
+3b. Alternatively, you can use `Pipeline script from SCM` option if your Jenkinsfile is stored in SCM.
 
-4. Alternatively, you can use `Pipeline script from SCM` option if your Jenkinsfile is stored in SCM.
 ![Jenkins CLI](/img/cicd/jenkins/cli04.png)
 
-
-5. Depending on the SCM type, set all required connection parameters, select branch name and set a path to the pipeline script file (Jenkinsfile). When everything is set, click on `Save` button.
+Depending on the SCM type, set all required connection parameters, select branch name and set a path to the pipeline script file (Jenkinsfile). In such a case, your Jenkinsfile should not contain a `Checkout` stage, as Jenkins will do the checkout automatically according to the settings above 
 
 ![Jenkins CLI](/img/cicd/jenkins/cli05.png)
 
-In such a case, your Jenkinsfile should not contain a `Checkout` stage, as Jenkins will do the checkout automatically according to the settings above <br/>
+### Console Output
+![Jenkins CLI](/img/cicd/jenkins/cli15.png)
+
+
 
 ### Post-build shell script
 It is also possible to export test results with Railflow in a post-build shell script by following steps below:
@@ -255,12 +235,15 @@ It is also possible to export test results with Railflow in a post-build shell s
 
 
 3. From the Jenkins home page (i.e. the Dashboard of the Jenkins classic UI), click `New Item` in the top left corner to create a new Project in Jenkins.
+
 ![Jenkins CLI](/img/cicd/jenkins/cli01.png)
 
 4. Specify the name for a new project in the `Enter an item name` field, select the `Freestyle project` type and click the `OK` button.
+
 ![Jenkins CLI](/img/cicd/jenkins/cli07.png)
 
 5. Select appropriate SCM system (e.g. Git) and fill out the required fields.
+
 ![Jenkins CLI](/img/cicd/jenkins/cli08.png)
 
 
@@ -291,3 +274,68 @@ It is also possible to export test results with Railflow in a post-build shell s
 call npm install railflow
 call npx railflow -k %RAILFLOW_KEY% -url https://testrail.railflow.io/ -u %TESTRAIL_CREDS_USR% -p %TESTRAIL_CREDS_PSW% -pr \"JUnit Demo\" -path Master/section1/section2 -f junit -r target/surefire-reports/*.xml -tr TestRunDemo -tp TestPlanDemo -mp Milestone1/Milestone2
 ```
+
+## Docker Image (option 3)
+:::tip Coming Soon 
+Detailed instructions with sample jenkinsfile coming soon.
+
+In the meantime, feel free to use [Railflow CLI Docker Image](https://hub.docker.com/r/railflow/railflow) on your own within the Jenkinsfile
+:::
+
+
+
+
+## Smart Failure Assignment
+:::info
+Smart Failure assignment is a very powerful feature of Railflow and allows teams to efficiently and strategically assign test failures to specified team members. Doing this automatically as part of the CI process means that teams don't waste valuable time during the test triage process. 
+:::
+
+:::note
+To use Smart Failure Assignment feature, the users need to have `Global Role` under `Project Access`.
+::: 
+![Jenkins plugin](/img/cicd/jenkins/smart-failure-5.png)
+
+### Example
+:::tip
+Smart Failure assignment is available in both the CLI and plugin approach.
+:::
+
+Consider a Jenkins Selenium Webdriver job build is failing with 5 test failures, and 2 user configured in the `Smart Test Failure Assignment` field.
+
+![Jenkins plugin](/img/cicd/jenkins/smart-failure-1.png)
+
+
+
+### Jenkins Build Logs 
+![Jenkins plugin](/img/cicd/jenkins/smart-failure-2.png)
+
+### TestRail Results View
+In this example above, Railflow's Smart Assignment feature filtered all the test failures and distributed them equally across the specified users. This nifty feature greatly eliminates the manual test triage process and saves teams valuable time.
+
+![Jenkins plugin](/img/cicd/jenkins/smart-failure-3.png)
+![Jenkins plugin](/img/cicd/jenkins/smart-failure-4.png)
+
+
+
+
+
+
+## TestRail Export Details
+>Railflow creates a very rich and flexible integration between Jenkins and TestRail. Based on Railflow configuration, TestRail entities can be created or updated automatically as part of your CICD process. The screenshots below shows the output of processing a typical JUnit test framework report. 
+
+**Jenkins console output:**  
+![Jenkins plugin](/img/cicd/jenkins/plugin-exec-1.png)
+
+**Automatic Test Creation:** 
+![Jenkins plugin](/img/cicd/jenkins/plugin-exec-3.png) 
+
+**Automatic Test Plan and Runs:**
+![Jenkins plugin](/img/cicd/jenkins/plugin-exec-4.png)
+![Jenkins plugin](/img/cicd/jenkins/plugin-exec-5.png)
+
+
+**Test Results Details:**
+![Jenkins plugin](/img/cicd/jenkins/plugin-exec-6.png)
+
+**Automatic Milestones:**
+![Jenkins plugin](/img/cicd/jenkins/plugin-exec-7.png)
