@@ -82,7 +82,7 @@ jobs:
 ```
 
 ## TestRail Export Details
->Railflow creates a very rich and flexible integration between GitHub and TestRail. Based on Railflow configuration, TestRail entities can be created or updated automatically as part of your CICD process. The screenshots below shows the output of processing a typical JUnit test framework report. 
+Railflow creates a very rich and flexible integration between GitHub and TestRail. Based on Railflow configuration, TestRail entities can be created or updated automatically as part of your CICD process. The screenshots below shows the output of processing a typical JUnit test framework report. 
 
 ### GitHub Job Output
 ![github build logs](/img/cicd/github/github-output.png)

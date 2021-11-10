@@ -61,9 +61,9 @@ Railflow plugin configuration section allows you to centrally defined one or mul
 
 
 ### Freestyle Job Configuration
->If you are using Jenkins UI based (freestyle job) jobs to run some test frameworks/tools, you can use the Railflow plugin's UI controls to easily integrate with TestRail by following these steps.
+If you are using Jenkins UI based (freestyle job) jobs to run some test frameworks/tools, you can use the Railflow plugin's UI controls to easily integrate with TestRail by following these steps.
 
-1. Add and configure the Jenkins job's post-build action: `Railflow Plugin: TestRail Test Results Processor`. Railflow's post-build action allows you to specify the test framework, test results location, and various other TestRail configurations.
+Add and configure the Jenkins job's post-build action: `Railflow Plugin: TestRail Test Results Processor`. Railflow's post-build action allows you to specify the test framework, test results location, and various other TestRail configurations.
 
 ![Jenkins plugin](/img/cicd/jenkins/plugin-job-1.png)
 
@@ -74,7 +74,7 @@ For additional TestRail export functionality, check out the `Advanced` section.
 ![Jenkins plugin](/img/cicd/jenkins/plugin-job-3.png)
 
 ### Jenkinsfile Job Configuration
->If you are using a Jenkinsfile to run some test frameworks/tools, you can access the same plugin functionality within the Jenkinsfile and easily integrate with TestRail by following these steps
+If you are using a Jenkinsfile to run some test frameworks/tools, you can access the same plugin functionality within the Jenkinsfile and easily integrate with TestRail by following these steps
 
 
 ```jsx title="Jenkins Pipeline Example running JUnit test project"
@@ -119,7 +119,7 @@ pipeline {
 ```
 
 ### Post-Build Action Reference
->Both the Jenkinsfile and Freestyle job depend on the `Railflow Plugin: TestRail Test Results Processor` post-build action to process test results and post them to TestRail. This action provides a host of options to allow users to integrate with TestRail per their requirements. The reference below describes all the options and their usage.
+Both the Jenkinsfile and Freestyle job depend on the `Railflow Plugin: TestRail Test Results Processor` post-build action to process test results and post them to TestRail. This action provides users a host of options to integrate Jenkins with TestRail in a variety of ways and across any testing tool and framework. The reference below describes all the options and their usage.
 
 :::tip
 You can add multiple Raillflow post-build actions using `Add More` button. This may be needed if you have multiple reports to process and want to map each report to different places in TestRail.
@@ -267,7 +267,7 @@ In the meantime, feel free to use [Railflow CLI Docker Image](https://hub.docker
 :::
 
 ## TestRail Export Details
->Railflow creates a very rich and flexible integration between Jenkins and TestRail. Based on Railflow configuration, TestRail entities can be created or updated automatically as part of your CICD process. The screenshots below shows the output of processing a typical JUnit test framework report. 
+Railflow creates a very rich and flexible integration between Jenkins and TestRail. Based on Railflow configuration, TestRail entities can be created or updated automatically as part of your CICD process. The screenshots below shows the output of processing a typical JUnit test framework report. 
 
 ### Jenkins console output
 ![Jenkins plugin](/img/cicd/jenkins/plugin-exec-1.png)
@@ -293,6 +293,7 @@ Smart Failure assignment is a very powerful feature of Railflow and allows teams
 :::note
 To use Smart Failure Assignment feature, the users need to have `Global Role` under `Project Access`.
 ::: 
+
 ![Jenkins plugin](/img/cicd/jenkins/smart-failure-5.png)
 
 ### Example
@@ -303,7 +304,6 @@ Smart Failure assignment is available in both the CLI and plugin approach.
 Consider a Jenkins Selenium Webdriver job build is failing with 5 test failures, and 2 users configured in the `Smart Test Failure Assignment` field.
 
 ![Jenkins plugin](/img/cicd/jenkins/smart-failure-1.png)
-
 
 
 ### Jenkins Build Logs 

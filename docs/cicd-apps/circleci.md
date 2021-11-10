@@ -72,7 +72,7 @@ workflows:
 ```
 
 ## TestRail Export Details
->Railflow creates a very rich and flexible integration between Circle CI and TestRail. Based on Railflow configuration, TestRail entities can be created or updated automatically as part of your CICD process. The screenshots below shows the output of processing a typical JUnit test framework report. 
+Railflow creates a very rich and flexible integration between Circle CI and TestRail. Based on Railflow configuration, TestRail entities can be created or updated automatically as part of your CICD process. The screenshots below shows the output of processing a typical JUnit test framework report. 
 
 ### Circle CI Job Output 
 ![circleci job output ](/img/cicd/circleci/circle-build-output.png)
