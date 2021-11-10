@@ -91,7 +91,7 @@ To use Smart Failure Assignment feature, the users need to have `Global Role` un
 
 
 ### Example
-Consider a Gitlab Selenium Webdriver project build is failing with 5 test failures, and 2 user configured in the Railflow CLI
+Consider a Gitlab Selenium Webdriver project build is failing with 5 test failures, and 2 users configured in the Railflow CLI
 
 ![smart assign](/img/cicd/gitlab/gitlab-smart-assign.png)
 

@@ -160,27 +160,18 @@ You can add multiple Raillflow post-build actions using `Add More` button. This 
 
 ## NPM Package (option 2)
 :::note NPM approach
-If you cannot use Jenkins plugin for some reason, Railflow is also available as a NPM command line tool. You would install Railflow NPM package just like your would install any other NPM module. Railflow NPM package can be pre-installed on the Jenkins agent, or you can install it at run-time. 
+If you cannot use Jenkins plugin for some reason, Railflow is also available as a [NPM command line tool](https://www.npmjs.com/package/railflow). You would install Railflow NPM package just like your would install any other NPM module. Railflow NPM package can be pre-installed on the Jenkins agent, or you can install it at run-time. 
 :::
 
-### Jenkins pipelines
-You can run railflow in [Jenkins](https://jenkins.io/) pipeline by the following steps
+:::tip 
+Jenkinsfile is typically stored in some SCM (recommended). It can also be specified directly in a `Pipeline` style job. 
+:::
 
-1. From the Jenkins home page (i.e. the Dashboard of the Jenkins classic UI), click `New Item` in the top left corner to create a new Project in Jenkins.
-
-![Jenkins CLI](/img/cicd/jenkins/cli01.png)
-
-2. Select `Pipeline` project with some name.
-
-![Jenkins CLI](/img/cicd/jenkins/cli02.png)
+### NPM Jenkinsfile
+Using a Jenkinsfile, we will install Railflow NPM at build time using npx
 
 
-3a. Add the pipeline script in the `Script` textarea of the `Pipeline` section and click the `Save` button. 
-
-![Jenkins CLI](/img/cicd/jenkins/cli03.png)
-
-
-```jsx title="Jenkinsfile Example"
+```jsx title="Jenkinsfile Example installing Railflow NPM at build time using npx"
 pipeline {
     agent any
     environment {
@@ -214,19 +205,11 @@ pipeline {
 }
 ```
 
-3b. Alternatively, you can use `Pipeline script from SCM` option if your Jenkinsfile is stored in SCM.
-
-![Jenkins CLI](/img/cicd/jenkins/cli04.png)
-
-Depending on the SCM type, set all required connection parameters, select branch name and set a path to the pipeline script file (Jenkinsfile). In such a case, your Jenkinsfile should not contain a `Checkout` stage, as Jenkins will do the checkout automatically according to the settings above 
-
-![Jenkins CLI](/img/cicd/jenkins/cli05.png)
-
 ### Console Output
 ![Jenkins CLI](/img/cicd/jenkins/cli15.png)
 
 
-
+<!---
 ### Post-build shell script
 It is also possible to export test results with Railflow in a post-build shell script by following steps below:
 1. Install [NodeJS](https://nodejs.org) on the Jenkins server.
@@ -274,6 +257,7 @@ It is also possible to export test results with Railflow in a post-build shell s
 call npm install railflow
 call npx railflow -k %RAILFLOW_KEY% -url https://testrail.railflow.io/ -u %TESTRAIL_CREDS_USR% -p %TESTRAIL_CREDS_PSW% -pr \"JUnit Demo\" -path Master/section1/section2 -f junit -r target/surefire-reports/*.xml -tr TestRunDemo -tp TestPlanDemo -mp Milestone1/Milestone2
 ```
+-->
 
 ## Docker Image (option 3)
 :::tip Coming Soon 
@@ -282,8 +266,24 @@ Detailed instructions with sample jenkinsfile coming soon.
 In the meantime, feel free to use [Railflow CLI Docker Image](https://hub.docker.com/r/railflow/railflow) on your own within the Jenkinsfile
 :::
 
+## TestRail Export Details
+>Railflow creates a very rich and flexible integration between Jenkins and TestRail. Based on Railflow configuration, TestRail entities can be created or updated automatically as part of your CICD process. The screenshots below shows the output of processing a typical JUnit test framework report. 
 
+### Jenkins console output
+![Jenkins plugin](/img/cicd/jenkins/plugin-exec-1.png)
 
+### Automatic Test Creation
+![Jenkins plugin](/img/cicd/jenkins/plugin-exec-3.png) 
+
+### Automatic Test Plan and Runs
+![Jenkins plugin](/img/cicd/jenkins/plugin-exec-4.png)
+![Jenkins plugin](/img/cicd/jenkins/plugin-exec-5.png)
+
+### Test Results Details
+![Jenkins plugin](/img/cicd/jenkins/plugin-exec-6.png)
+
+### Automatic Milestones
+![Jenkins plugin](/img/cicd/jenkins/plugin-exec-7.png)
 
 ## Smart Failure Assignment
 :::info
@@ -300,7 +300,7 @@ To use Smart Failure Assignment feature, the users need to have `Global Role` un
 Smart Failure assignment is available in both the CLI and plugin approach.
 :::
 
-Consider a Jenkins Selenium Webdriver job build is failing with 5 test failures, and 2 user configured in the `Smart Test Failure Assignment` field.
+Consider a Jenkins Selenium Webdriver job build is failing with 5 test failures, and 2 users configured in the `Smart Test Failure Assignment` field.
 
 ![Jenkins plugin](/img/cicd/jenkins/smart-failure-1.png)
 
@@ -315,27 +315,3 @@ In this example above, Railflow's Smart Assignment feature filtered all the test
 ![Jenkins plugin](/img/cicd/jenkins/smart-failure-3.png)
 ![Jenkins plugin](/img/cicd/jenkins/smart-failure-4.png)
 
-
-
-
-
-
-## TestRail Export Details
->Railflow creates a very rich and flexible integration between Jenkins and TestRail. Based on Railflow configuration, TestRail entities can be created or updated automatically as part of your CICD process. The screenshots below shows the output of processing a typical JUnit test framework report. 
-
-**Jenkins console output:**  
-![Jenkins plugin](/img/cicd/jenkins/plugin-exec-1.png)
-
-**Automatic Test Creation:** 
-![Jenkins plugin](/img/cicd/jenkins/plugin-exec-3.png) 
-
-**Automatic Test Plan and Runs:**
-![Jenkins plugin](/img/cicd/jenkins/plugin-exec-4.png)
-![Jenkins plugin](/img/cicd/jenkins/plugin-exec-5.png)
-
-
-**Test Results Details:**
-![Jenkins plugin](/img/cicd/jenkins/plugin-exec-6.png)
-
-**Automatic Milestones:**
-![Jenkins plugin](/img/cicd/jenkins/plugin-exec-7.png)

@@ -65,7 +65,7 @@ script:
 ![Travis CI](/img/cicd/jenkins/plugin-exec-5.png)
 
 ### Example
-Consider a Travis CI Selenium Webdriver project build is failing with 5 test failures, and 2 user configured in the Railflow CLI
+Consider a Travis CI Selenium Webdriver project build is failing with 5 test failures, and 2 users configured in the Railflow CLI
 
 ![Travis CI](/img/cicd/travisci/travis-smart-assign.png)
 

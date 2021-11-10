@@ -114,7 +114,7 @@ To ensure that test results are posted to TestRail even if the TeamCity build fa
 ![TeamCity plugin](/img/cicd/jenkins/smart-failure-5.png)
 
 **Example**<br/>
-Consider a TeamCity Selenium Webdriver project build is failing with 5 test failures, and 2 user configured in the `Smart Test Failure Assignment` field.
+Consider a TeamCity Selenium Webdriver project build is failing with 5 test failures, and 2 users configured in the `Smart Test Failure Assignment` field.
 
 ![TeamCity plugin](/img/cicd/teamcity/teamcity-smart-failure.png)
 

@@ -112,7 +112,7 @@ To use Smart Failure Assignment feature, the users need to have `Global Role` un
 ![smart assign](/img/cicd/jenkins/smart-failure-5.png)
 
 ### Example
-Consider a GitHub Selenium Webdriver project build is failing with 5 test failures, and 2 user configured in the Railflow CLI
+Consider a GitHub Selenium Webdriver project build is failing with 5 test failures, and 2 users configured in the Railflow CLI
 
 ![smart assign](/img/cicd/github/github-smart-assign.png)
 
