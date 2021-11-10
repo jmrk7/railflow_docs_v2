@@ -4,29 +4,45 @@ sidebar_position: 2
 
 # Cucumber
 
-# Introduction
-[Cucumber BDD framework](https://cucumber.io/) is a popular framework which is used by many software development teams.
-[Railflow](https://railflow.io) platform can help you to integrate cucumber tests with TestRail providing convenient NPM CLI tool and plugins for Jenkins and TeamCity.
+## Overview
 
-# Writing cucumber tests
-In this example we will use Selenium WebDriver together with JUnit test framework.
+:::info
+[Cucumber BDD framework](https://cucumber.io/) is a popular functional testing framework which is used by many software development and QA teams.
+[Railflow](https://railflow.io) helps users integrate cucumber tests with TestRail by either TeamCity/Jenkins CI plugins or the Railflow NPM CLI for use with many of the Saas CI systems like Github, Gitlab, Travis, Circle CI.
+:::
 
-## Prerequisites
+## How does Railflow integrate Cucumber framework?
+:::info
+Cucumber like all other test framework and tools, produces structured result file. Railflow CI Plugins and CLI can process this results file and automatically parse and upload them into TestRail. Railflow is able to extract all the granular information and map them to tests and steps in TestRail giving user a very similar BDD like breakdown in TestRail.
+:::
+
+## Requirements
+:::info
+These requirements are specific to this sample project on this doc. Refer to https://cucumber.io/docs/installation/ for detailed on Cucumber requirements 
+:::
+
+:::info
+The example below uses chrome driver. The installation/configuration of chrome driver is beyond the scope of ths tutorial.
+:::
+
 - Maven 3
 - JDK 8
-- Chromedriver
-- [NodeJS](https://nodejs.org) - v14 or higher.
-- [NPM](https://www.npmjs.com/) 
+- NodeJS v14 or higher.
+- NPM
 
-## Creating Maven project
-Maven project can be created manually or by executing the following command:
+
+
+## Cucumber Example 
+In this example we will use Selenium WebDriver together with JUnit test framework.
+
+### Create Maven project
 
 ```jsx title="maven create"
 mvn -B archetype:generate -DgroupId=io.railflow.demo -DartifactId=cucumber-demo -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4
 ```
 
-
-Once the project is created, some required dependencies should be added into `pom.xml` file:
+### Add dependencies 
+Add required dependencies into `pom.xml` file
 
 ```jsx title="maven pom.xml"
 <?xml version="1.0" encoding="UTF-8"?>
@@ -67,7 +83,7 @@ Once the project is created, some required dependencies should be added into `po
 ```
 
 
-## Adding cucumber feature files:
+### Add Feature File
 Add an empty `pizza_tests.feature` file into `src/test/resources/io/railflow/demo/cucumber` directory:
 
 ![IDE](/img/bdd/cucumber/ide-1.png)
@@ -90,14 +106,8 @@ Feature: Pizza tests
     Then no results are shown
 ```
 
-## Downloading WebDriver implementation
-In order to run Selenium tests one of the WebDriver implementations should be added to your project. In this example we use [Chrome Driver](https://chromedriver.chromium.org/).
-The easiest way to add it into the project is just download archive from https://chromedriver.chromium.org/ and unpack into the project root folder:
-
-![IDE](/img/bdd/cucumber/ide-2.png)
-
-## Implementing scenarios
-To implement scenario, create a new `io.railflow.demo.cucumber.PizzaTests` class which contain methods for steps:
+### Implement Scenario
+To implement a scenario, create a new `io.railflow.demo.cucumber.PizzaTests` class which contain methods for steps:
 
 ```jsx title="cucumber example"
 package io.railflow.demo.cucumber;
@@ -186,8 +196,8 @@ Except methods for steps, `PizzaTests` class contains the following additional m
 2. `afterScenario()` - the method is marked with `io.cucumber.java.After` annotation, so Cucumber executes this method after each scenario, so this is a good place to do clean up and close WebDriver instance.
 3. `afterStep(Scenario scenario)` - the method is executed after each completed step and can be used for capturing screenshots if step has failed.
 
-## Setting up Cucumber Test Runner
-To be able to run JUnit tests together with Cucumber we need to configure Cucumber Test Runner. To do this, just add `io.railflow.demo.cucumber.TestRunner` class:
+### Setup Cucumber Test Runner
+In order to run JUnit tests together with Cucumber we need to configure Cucumber Test Runner. To do this, just add `io.railflow.demo.cucumber.TestRunner` class:
 
 ```jsx title="cucumber example"
 package io.railflow.demo.cucumber;
@@ -205,51 +215,34 @@ public class TestRunner {
 }
 ```
 
-`TestRunner` class defines the Cucumber runner and also makes Cucumber to generate JSON report in `target` folder of the project.
+`TestRunner` class defines the Cucumber runner and also instructs Cucumber to generate a JSON report in `target` folder of the project.
 
-## Executing test
-To execute tests and generate test report, just run:
+### Executing test
+To execute tests and generate test report, just run the command below. This will generate a new `target/test-report.json` file which can be then uploaded into TestRail using Railflow CI plugins or the Railflow CLI. 
 
 ```jsx title="maven test"
 mvn clean test
 ```
 
-It will generate a new `target/test-report.json` file which can be then uploaded into TestRail using Railflow NPM package.
 
-## Uploading Cucumber JSON report into TestRail
-To upload generated in the previous step JSON report, the following steps should be done:
+## Process Cucumber Results
+Depending on how Cucumber tests were executed, you can use the appropriate Railflow utility (Jenkins or TeamCity plugin or Railflow NPM CLI) to process Cucumber results.
 
-1.  Installing Railflow NPM package:
-
-```jsx title="Railflow CLI"
-npm install railflow
-```
-
-2.  Run Railflow NPM package:
-
-```jsx title="Railflow CLI"
-npx railflow -k <license key> -url <testrail address> -u <username> -p <password> -pr <project name> -path <suite name>/<section name>/<subsection name> -f cucumber -r target/test-report.json -tp <test plan name> -tr <test run name>
-```
-
->**NOTE**
-Adjust the Railflow arguments according to the Railflow [Command Line Reference](../railflow-cli/cli-reference)
-
-
-### Results in TestRail
-Here is the results in TestRail for the following command:
-
-```jsx title="Railflow CLI"
-npx railflow -k XXXXX-XXXXX-XXXXX-XXXXX -url https://someserver.io -u user@railflow.io -p pass -pr "Railflow Demo" -path Cucumber/Demo -f cucumber -r target/test-report.json -tp "Cucumber Plan" -tr "Cucumber Run"
-```
+- [Railflow CICD Overview](https://docs.railflow.io/docs/cicd-apps/overview)
+- [Railflow CLI](https://docs.railflow.io/docs/railflow-cli/overview)
 
 ![railflow cli](/img/bdd/cucumber/npm-exec-1.png)
 ![railflow cli](/img/bdd/cucumber/npm-exec-2.png)
+
 ![railflow cli](/img/bdd/cucumber/results-1.png)
+
 ![railflow cli](/img/bdd/cucumber/results-2.png)
 
 
 ## Resources
 
-The example project can be found in GitHub: https://github.com/railflow/cucumber_example
+The example project can be found in GitHub: 
+
+https://github.com/railflow/cucumber_example
 
 
