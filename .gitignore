@@ -2,3 +2,5 @@ node_modules/
 build/
 .idea/
 .docusaurus/
+.env
+config.json
