@@ -63,6 +63,12 @@ const config = {
 
         //... other Algolia params
       },
+      gtag: {
+        // You can also use your "G-" Measurement ID here.
+        trackingID: "G-JD3M22EF1F",
+        // Optional fields.
+        anonymizeIP: true, // Should IPs be anonymized?
+      },
       navbar: {
         logo: {
           alt: "Railflow Logo",
