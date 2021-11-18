@@ -9,7 +9,7 @@ const config = {
   title: "Railflow Docs",
   tagline:
     "Centralized TestRail reporting for all your testing tools, frameworks, and CICD processes.",
-  url: "https://railflow.io",
+  url: "https://docs.railflow.io",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
