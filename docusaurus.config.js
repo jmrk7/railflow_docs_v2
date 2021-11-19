@@ -81,6 +81,10 @@ const config = {
             position: "left",
             label: "Railflow User Docs",
           },
+          {
+            type: "search",
+            position: "right",
+          },
           //{to: '/blog', label: 'Blog', position: 'left'},
           /* {
             href: 'https://github.com/railflow/docs',
