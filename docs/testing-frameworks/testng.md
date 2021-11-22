@@ -11,7 +11,7 @@ Railflow Java Annotations Package for TestNG allow users to easily integrate the
 
 ## How does Railflow Annotations work?
 :::info
-TestNG like all other test framework, produces a test results xml `testing-results.xml`. Railflow CI Plugins and CLI can process this results file and automatically parse and upload them into TestRail. For most users, this would be sufficient. For user that have a need to `map` TestNG tests to tests in TestRail or want to use automatic screenshots, they would need to use the Railflow Annotations package. 
+TestNG like all other test framework, produces a test results xml `testng-results.xml`. Railflow CI Plugins and CLI can process this results file and automatically parse and upload them into TestRail. For most users, this would be sufficient. For user that have a need to `map` TestNG tests to tests in TestRail or want to use automatic screenshots, they would need to use the Railflow Annotations package. 
 
 When using the annotation package, TestNG produces an enriched xml test report `railflow_report.xml`. This report is then processed by Railflow CI Plugins and CLI in the same way and you end up with advanced mapping and configuration results in TestRail.
 :::
