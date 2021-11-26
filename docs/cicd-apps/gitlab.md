@@ -54,7 +54,7 @@ railflow-test:
   script:
     - cp ./target/surefire-reports/testng-results.xml /usr/railflow
     - cd /usr/railflow
-    - npx railflow -k $RAILFLOW_KEY -url $TESTRAIL_URL -u $RAILFLOW_USERNAME -p $RAILFLOW_PASSWORD -pr "Github-Demo" -path Demo/TestNG -f testng -r ./testng-results.xml -tp TestPlanName -a john@foo.com, jane@foo.com
+    - npx railflow -k $RAILFLOW_KEY -url $TESTRAIL_URL -u $RAILFLOW_USERNAME -p $RAILFLOW_PASSWORD -pr "Github-Demo" -path Demo/TestNG -f testng -r ./testng-results.xml -sm path -tp TestPlanName -a john@foo.com, jane@foo.com
   only:
     - master
 ```

@@ -199,7 +199,7 @@ pipeline {
         always{
             echo "Begin exporting to TestRail"
             sh "npm install railflow"
-            sh "npx railflow -k ${RAILFLOW_KEY} -url https://testrail_server/ -u ${TESTRAIL_CREDS_USR} -p ${TESTRAIL_CREDS_PSW} -pr \\\"Railflow Demo\\\" -path Master/section1/section2 -f junit -r target/surefire-reports/*.xml -tp TestPlan12345 -tr TestRunDemo -tp TestPlanDemo -mp Milestone1/Milestone2 -cf \\\"Required text field=123\\\""
+            sh "npx railflow -k ${RAILFLOW_KEY} -url https://testrail_server/ -u ${TESTRAIL_CREDS_USR} -p ${TESTRAIL_CREDS_PSW} -pr \\\"Railflow Demo\\\" -path Master/section1/section2 -f junit -r target/surefire-reports/*.xml -sm path -tp TestPlan12345 -tr TestRunDemo -tp TestPlanDemo -mp Milestone1/Milestone2 -cf \\\"Required text field=123\\\""
         }
     }
 }
@@ -255,7 +255,7 @@ It is also possible to export test results with Railflow in a post-build shell s
 
 ```jsx title="Jenkins Railflow CLI Example"
 call npm install railflow
-call npx railflow -k %RAILFLOW_KEY% -url https://testrail.railflow.io/ -u %TESTRAIL_CREDS_USR% -p %TESTRAIL_CREDS_PSW% -pr \"JUnit Demo\" -path Master/section1/section2 -f junit -r target/surefire-reports/*.xml -tr TestRunDemo -tp TestPlanDemo -mp Milestone1/Milestone2
+call npx railflow -k %RAILFLOW_KEY% -url https://testrail.railflow.io/ -u %TESTRAIL_CREDS_USR% -p %TESTRAIL_CREDS_PSW% -pr \"JUnit Demo\" -path Master/section1/section2 -f junit -r target/surefire-reports/*.xml -sm path -tr TestRunDemo -tp TestPlanDemo -mp Milestone1/Milestone2
 ```
 -->
 

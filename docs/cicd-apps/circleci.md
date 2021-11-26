@@ -58,7 +58,7 @@ jobs:
             | wget --verbose --header "Circle-Token: $CIRCLE_TOKEN" --input-file -
       - run:
           name: Run railflow testing
-          command: npx railflow -k $RAILFLOW_KEY -url $TESTRAIL_URL -u $RAILFLOW_USERNAME -p $RAILFLOW_PASSWORD -pr "CircleCI-Demo" -path Demo/TestNG -f testng -a john@foo.com, jane@foo.com -r /usr/railflow/testng-results.xml -tp TestPlanName
+          command: npx railflow -k $RAILFLOW_KEY -url $TESTRAIL_URL -u $RAILFLOW_USERNAME -p $RAILFLOW_PASSWORD -pr "CircleCI-Demo" -path Demo/TestNG -f testng -a john@foo.com, jane@foo.com -r /usr/railflow/testng-results.xml -sm path -tp TestPlanName
 
 workflows:
   version: 2

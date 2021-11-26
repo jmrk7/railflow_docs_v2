@@ -144,7 +144,7 @@ To integrate a TeamCity project with Railflow, simply follow these steps
 ![TeamCity CLI](/img/cicd/teamcity/cli05.png)
 
 ```jsx title="TeamCity Railflow CLI Example"
-npx railflow -k %RAILFLOW_KEY% -url https://testrail.server.address/ -u %TESTRAIL_CREDS_USER% -p %TESTRAIL_CREDS_PASS% -pr \"Railflow Demo\" -path Master/section1/section2 -f junit -r target/surefire-reports/*.xml -tr TestRunDemo -tp TestPlanDemo -mp Milestone1/Milestone2
+npx railflow -k %RAILFLOW_KEY% -url https://testrail.server.address/ -u %TESTRAIL_CREDS_USER% -p %TESTRAIL_CREDS_PASS% -pr \"Railflow Demo\" -path Master/section1/section2 -f junit -r target/surefire-reports/*.xml -sm path -tr TestRunDemo -tp TestPlanDemo -mp Milestone1/Milestone2
 ```
 
 7. Click on the `Parameters` item in the left list, and the parameter setting page will be displayed in the right area.

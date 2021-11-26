@@ -77,7 +77,7 @@ jobs:
           RAILFLOW_USERNAME: ${{ secrets.RAILFLOW_USERNAME }}
           RAILFLOW_PASSWORD: ${{ secrets.RAILFLOW_PASSWORD }}
           TESTRAIL_URL: ${{ secrets.TESTRAIL_URL }}
-        run: npx railflow -k $RAILFLOW_KEY -url $TESTRAIL_URL -u $RAILFLOW_USERNAME -p $RAILFLOW_PASSWORD -pr "GitHub-Demo" -path Demo/TestNG -f testng -a john@foo.com, jane@foo.com -r /usr/railflow/testng-results.xml -tp TestPlanName 
+        run: npx railflow -k $RAILFLOW_KEY -url $TESTRAIL_URL -u $RAILFLOW_USERNAME -p $RAILFLOW_PASSWORD -pr "GitHub-Demo" -path Demo/TestNG -f testng -a john@foo.com, jane@foo.com -r /usr/railflow/testng-results.xml -sm path -tp TestPlanName 
 
 ```
 

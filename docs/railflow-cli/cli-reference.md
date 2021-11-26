@@ -45,6 +45,7 @@ Railflow CLI will automatically create tests, runs, plans, milestones, etc. if t
 | -path, --test-path            | Yes                      | TestRail test cases path                                                                                                                                    | -path "Section1/subsection2/ShoppingCart                              |
 | -f, --format                  | Yes                      | Report format: JUnit, TestNg, TestNg-Steps, Cucumber, NUnit, Allure, Robot, TRX (case insensitive)                                                          | -f junit                                                              |
 | -r, --report-files            | Yes                      | The file path(s) to the test report file(s) generated during the build. User can pass multiple values separated with spaces. Ant-style patterns such as **\*\*/surefire-reports/\*.xml** can be used.<br/>E.g. use **target/surefire-reports/\*.xml** to capture all XML files in **target/surefire-reports** directory. | -r target/surefire-reports/\*.xml target/failsafe-reports/\*.xml  |
+| -sm, --search-mode            | Yes                      | Specifies the test case lookup algorithm. <br/> **`name:`** search for test case matching the name within the entire test suite. If test case found, update the test case. If test case not found, create a new test case within specified `-path` <br/> **`path:`** search for test case matching the name within the specified `-path`. If test case found, update the test case. If test case not found, create a new test case within specified `-path` | -sm path  |
 | -px, --proxy                  | No                       | HTTP or SOCKS proxy configuration <br/> E.g. socks://username:password@127.0.0.1:1080                                                                       | -px socks://username:password@127.0.0.1:1080                          |
 | -t, --timeout                 | No                       | Upload timeout (seconds)                                                                                                                                    | -t 10                                                                 |
 | -tr, --test-run               | No                       | TestRail test run name                                                                                                                                      | -tr "Chrome Regression Run"                                           |
@@ -68,7 +69,7 @@ Railflow CLI will automatically create tests, runs, plans, milestones, etc. if t
 
 
 ```jsx title="Railflow CLI Example"
-npx railflow -k <license key> -url <testrail address> -u <username> -p <password> -pr <project name> -path <suite name>/<section name>/<subsection name> -f junit -r <report files pattern> -tp [test plan name] -mp [milestone path]
+npx railflow -k <license key> -url <testrail address> -u <username> -p <password> -pr <project name> -path <suite name>/<section name>/<subsection name> -f junit -r <report files pattern> -sm <search mode> -tp [test plan name] -mp [milestone path]
 ```
 
 
@@ -83,12 +84,12 @@ It is generally a good practice to use environment variables like `RAILFLOW_LICE
 ## CLI Examples
 ### Export using license key
 ```jsx title="Railflow CLI Example"
-npx railflow -k ABCDE-12345-FGHIJ-67890 -url https://testrail.your-server.com/ -u testrail-username -p testrail-password -pr "Railflow Demo" -path Master/section1/section2 -f junit -r target/surefire-reports/*.xml -tr TestRunDemo -tp TestPlanDemo -mp Milestone1/Milestone2 -cn Browsers/Firefox -af assignees.txt
+npx railflow -k ABCDE-12345-FGHIJ-67890 -url https://testrail.your-server.com/ -u testrail-username -p testrail-password -pr "Railflow Demo" -path Master/section1/section2 -f junit -r target/surefire-reports/*.xml -sm path -tr TestRunDemo -tp TestPlanDemo -mp Milestone1/Milestone2 -cn Browsers/Firefox -af assignees.txt
 ```
 
 ### Export using license file
 ```jsx title="Railflow CLI Example"
-npx railflow -k ABCDE-12345-FGHIJ-67890 -url https://testrail.your-server.com/ -u testrail-username -p testrail-password -pr "Railflow Demo" -path Master/section1/section2 -f junit -r target/surefire-reports/*.xml -tr TestRunDemo -tp TestPlanDemo -mp Milestone1/Milestone2 -cn Browsers/Firefox -af assignees.txt
+npx railflow -l /home/user/ActivationFile20201020.skm -url https://testrail.your-server.com/ -u testrail-username -p testrail-password -pr "Railflow Demo" -path Master/section1/section2 -f junit -r target/surefire-reports/*.xml -sm path -tr TestRunDemo -tp TestPlanDemo -mp Milestone1/Milestone2 -cn Browsers/Firefox -af assignees.txt
 ```
 
 

@@ -38,7 +38,7 @@ before_install:
 
 script:
 - mvn clean test || true
-- npx railflow -k $RAILFLOW_KEY -url $TESTRAIL_URL -u $RAILFLOW_USERNAME -p $RAILFLOW_PASSWORD -pr "Github-Demo" -path Demo/TestNG -f testng -r ./target/surefire-reports/testng-results.xml -a john@foo.com, jane@foo.com -tp TestPlanName 
+- npx railflow -k $RAILFLOW_KEY -url $TESTRAIL_URL -u $RAILFLOW_USERNAME -p $RAILFLOW_PASSWORD -pr "Github-Demo" -path Demo/TestNG -f testng -r ./target/surefire-reports/testng-results.xml -sm path -a john@foo.com, jane@foo.com -tp TestPlanName 
 
 ```
 
