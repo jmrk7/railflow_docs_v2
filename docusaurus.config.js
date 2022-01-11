@@ -39,10 +39,13 @@ const config = {
       }),
     ],
   ],
-
+  plugins: ["docusaurus-plugin-hotjar"],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      hotjar: {
+        applicationId: 2774790,
+      },
       algolia: {
         // If Algolia did not provide you any appId, use 'BH4D9OD16A'
         appId: "F529WOEGUL",
