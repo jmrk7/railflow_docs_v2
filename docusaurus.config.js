@@ -44,7 +44,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       hotjar: {
-        applicationId: 2774790,
+        applicationId: 2776865,
       },
       algolia: {
         // If Algolia did not provide you any appId, use 'BH4D9OD16A'
