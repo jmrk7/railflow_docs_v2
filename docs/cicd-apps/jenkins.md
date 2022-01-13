@@ -103,6 +103,7 @@ pipeline {
             Browser/Chrome''', 
         milestonePath: 'M1/M2', 
         resultFilePattern: '**/surefire-reports/*.xml',
+        searchMode: 'Path',
         testCaseCustomFields: '''Required text field=Hello from Jenkins
             estimate=30s''', 
         testCasePath: 'Railflow/Website', 
@@ -134,6 +135,7 @@ You can add multiple Raillflow post-build actions using `Add More` button. This 
 | Override TestRail Credentials	   | No	| If specified, it overrides TestRail user credentials defined in Global Configuration	|
 | Results File Pattern   | Yes      | The file path to the test report file(s) generated during the build. Ant-style patterns such as **\*\*/surefire-reports/\*.xml** can be used.<br/>E.g. use **target/surefire-reports/*.xml** to capture all XML files in **target/surefire-reports** directory.	|
 | Report Format            | Yes      | Results file format	|
+| Search Mode                      | Yes      | Specifies the test case lookup algorithm. <br/> **`Name:`** search for test case matching the name within the entire test suite. If test case found, update the test case. If test case not found, create a new test case within specified Test Case Path <br/> **`Path`**: search for test case matching the name within the specified Test Case Path. If test case found, update the test case. If test case not found, create a new test case within specified Test Case Path	|
 | Test Case Path				   | Yes | Path to where Railflow should upload test case definitions, must contain suite name in the beginning (for single-suite project, suite name is always 'Master'), e.g. Master/Section1/Section2 |
 | Test Plan Name     | No       | Name of a test plan in TestRail to which test results will be added |
 | Test Run Name     | No       | Name of a test run in TestRail to which test results will be added |
