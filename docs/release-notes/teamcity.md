@@ -4,6 +4,18 @@ sidebar_position: 2
 
 # TeamCity Plugin
 
+## Release: 2.2
+New Features
+>
+- Add support for enhanced NUnit reports (https://github.com/railflow/nunit_example)
+- Add new "Search Mode" parameter
+
+Bug Fixes
+>
+- Fix incorrect logging messages
+- Error: Custom case field: 'Steps' ('custom_steps_separated') is required in your TestRail project
+
+
 ## Release: 2.1
 New Features 
 >

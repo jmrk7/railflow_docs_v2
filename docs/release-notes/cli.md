@@ -4,7 +4,28 @@ sidebar_position: 3
 
 # NPM CLI 
 
-## Release: 2.1
+## Release: 2.1.2
+New Features
+>
+- Add support for enhanced NUnit reports (https://github.com/railflow/nunit_example)
+- Display missing required parameter names
+- Show warning if attachment file is defined in NUnit report but does not exist
+
+Bug Fixes
+>
+- ETIMEDOUT on uploading large report files to TestRail Cloud
+- Error: Custom case field: 'Steps' ('custom_steps_separated') is required in your TestRail project
+
+## Release: 2.1.1
+New Features
+>
+- Add new --search-mode switch
+
+Bug Fixes
+>
+- Do not create section structure for mapped test cases
+
+## Release: 2.1.0
 New Features
 >
 - Add support for Allure reports

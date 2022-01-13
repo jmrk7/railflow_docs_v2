@@ -4,6 +4,19 @@ sidebar_position: 1
 
 # Jenkins Plugin
 
+## Release: 2.2
+New Features
+>
+- Add support for enhanced NUnit reports (https://github.com/railflow/nunit_example)
+- Add new "Search Mode" parameter
+
+Bug Fixes
+>
+- Confirmation label does not appear on successful license activation
+- Fix incorrect logging messages
+- Error: Custom case field: 'Steps' ('custom_steps_separated') is required in your TestRail project
+
+
 ## Release: 2.1
 New Features
 >
