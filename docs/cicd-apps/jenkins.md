@@ -263,13 +263,14 @@ call npx railflow -k %RAILFLOW_KEY% -url https://testrail.railflow.io/ -u %TESTR
 
 ## Docker Image (option 3)
 :::tip
-[Railflow CLI Docker Image](https://hub.docker.com/r/railflow/railflow) can be easily incorporated within your Jenkins pipelines to quickly and easily integrate Jenkins with TestRail.
-Jenkinsfile is typically stored in some SCM (recommended). It can also be specified directly in a `Pipeline` style job.
+[Railflow CLI Docker Image](https://hub.docker.com/r/railflow/railflow) can be easily incorporated within your Jenkins pipelines to quickly and easily integrate Jenkins with TestRail.    
+There are several approaches on how to use Docker with Jenkins, but the easiest one is to use [Jenkins Docker Plugin](https://plugins.jenkins.io/docker-plugin/) as it will do all the dirty work for you.
+With Railflow Docker Image and Jenkins Docker Plugin this task is a matter of a few lines of code.
 :::
 
-:::note Using Docker Image
- You would pull and run Railflow Docker image just like you would do any other Docker image. This can be done as a prior task on the Jenkins agent , or you can do it at run-time,
- Before everything the jenkins user should have added to docker group. Here is how to find the username of jenkins process running user and adding to docker group in Linux.
+:::note Setting up Jenkins agent on Linux
+ It is required to add jenkins user into docker group on the Jenkins Linux agent machine where Docker is installed.  
+ Here is how to find the username of jenkins process running user and adding to docker group in Linux.
 
 ```jsx title="Find the jenkins user"
  ps aux | grep '/usr/bin/daemon' | grep 'jenkins' | awk {'print $1'}
@@ -280,16 +281,14 @@ Jenkinsfile is typically stored in some SCM (recommended). It can also be specif
 Restart jenkins process.
 :::
 
-In this example below, we are building and publishing the test results from a JUNIT project. The Jenkins pipeline uses the [Railflow Docker Image](https://hub.docker.com/r/railflow/railflow) which is available on DockerHub.
+In this example below, we are building and publishing the test results from a TestNG project. The Jenkins pipeline uses the [Railflow Docker Image](https://hub.docker.com/r/railflow/railflow) which is available on DockerHub.
 ```jsx title="Jenkins Pipeline Example"
 pipeline {
    agent any
    environment {
-       RAILFLOW_KEY = credentials('railflow-key')
-       TESTRAIL_CREDS_USR = credentials('testrail-creds-username')
-       TESTRAIL_CREDS_PSW = credentials('testrail-creds-password')
-       TESTRAIL_URL = "https://testrail_server/"
-       JOB_PATH = "${WORKSPACE}"
+       RAILFLOW_KEY = credentials('railflow-key') // see https://www.jenkins.io/doc/book/pipeline/jenkinsfile/#handling-credentials
+       TESTRAIL_CREDS = credentials('testrail-credentials') // see https://www.jenkins.io/doc/book/pipeline/jenkinsfile/#usernames-and-passwords      
+       TESTRAIL_URL = "https://testrail_server/"       
    }
    tools {
        jdk 'default'
@@ -299,7 +298,7 @@ pipeline {
        stage('Checkout') {
            script {
                steps {
-                   checkout([$class: 'GitSCM', branches: [[name: '*/development']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git-creds', url: 'https://gitrepo.com/workspace/project.git']]])
+                    git branch: 'master', url: 'https://github.com/railflow/testng_example.git'
                }
            }    
        }
@@ -313,14 +312,9 @@ pipeline {
    }
    post {
        always {
-           script {
-               echo "Begin exporting to TestRail"
-               sh """docker pull railflow/railflow:latest"""
-               CONTAINER_ID = sh (
-                   script: "docker run -v ${JOB_PATH }/target/surefire-reports/:/usr/railflow/results -it -d railflow/railflow:latest /bin/sh -c \'npx railflow -url ${TESTRAIL_URL} -u ${TESTRAIL_CREDS_USR} -p ${TESTRAIL_CREDS_PSW} -pr \"Railflow Demo\" -path Master/section1/section2 -f junit -r ./results/*.xml -k ${RAILFLOW_KEY} -tp TestPlanDemo  -cf \"Required text Field=something\" -sm path\'",
-                   returnStdout: true
-               ).trim()
-               sh "docker logs -f ${CONTAINER_ID}"
+           sh 'docker pull railflow/railflow:latest'
+           withDockerContainer('railflow/railflow:latest') {
+               sh 'railflow -k ${RAILFLOW_KEY} -url ${TESTRAIL_URL} -u ${TESTRAIL_CREDS_USR} -p ${TESTRAIL_CREDS_PSW} -pr \"Railflow Demo\" -path Demo/Pizza -f testng -r "**/surefire-reports/testng-results.xml" -sm path -tp "Test Plan" -cf \"Required text field=something\"'
            }
        }
    }
