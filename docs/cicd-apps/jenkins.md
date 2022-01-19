@@ -283,40 +283,47 @@ Restart jenkins process.
 In this example below, we are building and publishing the test results from a JUNIT project. The Jenkins pipeline uses the [Railflow Docker Image](https://hub.docker.com/r/railflow/railflow) which is available on DockerHub.
 ```jsx title="Jenkins Pipeline Example"
 pipeline {
- agent any
- environment {
-  RAILFLOW_KEY = credentials('railflow-key')
-  TESTRAIL_CREDS_USR = credentials('testrail-creds-username')
-  TESTRAIL_CREDS_PSW = credentials('testrail-creds-password')
-  JOB_PATH = "${WORKSPACE}"
- }
- tools {
-  jdk 'default'
-  maven 'default'
- }
- stages {
-  stage('Checkout'){
-   steps{
-    checkout([$class: 'GitSCM', branches: [[name: '*/development']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git-creds', url: 'https://gitrepo.com/workspace/project.git']]])
+   agent any
+   environment {
+       RAILFLOW_KEY = credentials('railflow-key')
+       TESTRAIL_CREDS_USR = credentials('testrail-creds-username')
+       TESTRAIL_CREDS_PSW = credentials('testrail-creds-password')
+       TESTRAIL_URL = "https://testrail_server/"
+       JOB_PATH = "${WORKSPACE}"
    }
-  }
-  stage('Run unit tests') {
-   steps {
-    sh 'mvn clean test'
+   tools {
+       jdk 'default'
+       maven 'default'
    }
-  }
- }
- post{
-  always{
-   echo "Begin exporting to TestRail"
-   sh "docker pull railflow/railflow:latest"
-   CONTAINER_ID = sh (
-           script: 'docker run -v ${JOB_PATH }/target/surefire-reports/:/usr/railflow/results -it -d railflow/railflow:latest /bin/sh -c \'npx railflow -url https://testrail7.railflow.io -u ${TESTRAIL_CREDS_USR} -p ${TESTRAIL_CREDS_PSW} -pr \"Railflow Demo\" -path Master/section1/section2 -f junit -r ./results/*.xml -k ${RAILFLOW_KEY} -tp TestPlanDemo  -cf \"Required text Field=something\" -sm path\'',
-           returnStdout: true
-  ).trim()
-   sh "docker logs -f ${CONTAINER_ID}"
-  }
- }
+   stages {
+       stage('Checkout') {
+           script {
+               steps {
+                   checkout([$class: 'GitSCM', branches: [[name: '*/development']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git-creds', url: 'https://gitrepo.com/workspace/project.git']]])
+               }
+           }    
+       }
+       stage('Run unit tests') {
+           steps {
+               script {
+                   sh 'mvn clean test'
+               }
+           }
+       }
+   }
+   post {
+       always {
+           script {
+               echo "Begin exporting to TestRail"
+               sh """docker pull railflow/railflow:latest"""
+               CONTAINER_ID = sh (
+                   script: "docker run -v ${JOB_PATH }/target/surefire-reports/:/usr/railflow/results -it -d railflow/railflow:latest /bin/sh -c \'npx railflow -url ${TESTRAIL_URL} -u ${TESTRAIL_CREDS_USR} -p ${TESTRAIL_CREDS_PSW} -pr \"Railflow Demo\" -path Master/section1/section2 -f junit -r ./results/*.xml -k ${RAILFLOW_KEY} -tp TestPlanDemo  -cf \"Required text Field=something\" -sm path\'",
+                   returnStdout: true
+               ).trim()
+               sh "docker logs -f ${CONTAINER_ID}"
+           }
+       }
+   }
 }
 ```
 
