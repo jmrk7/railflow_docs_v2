@@ -262,11 +262,64 @@ call npx railflow -k %RAILFLOW_KEY% -url https://testrail.railflow.io/ -u %TESTR
 -->
 
 ## Docker Image (option 3)
-:::tip Coming Soon 
-Detailed instructions with sample jenkinsfile coming soon.
-
-In the meantime, feel free to use [Railflow CLI Docker Image](https://hub.docker.com/r/railflow/railflow) on your own within the Jenkinsfile
+:::tip
+[Railflow CLI Docker Image](https://hub.docker.com/r/railflow/railflow) can be easily incorporated within your Jenkins pipelines to quickly and easily integrate Jenkins with TestRail.    
+There are several approaches on how to use Docker with Jenkins, but the easiest one is to use [Jenkins Docker Plugin](https://plugins.jenkins.io/docker-plugin/) as it will do all the dirty work for you.
+With Railflow Docker Image and Jenkins Docker Plugin this task is a matter of a few lines of code.
 :::
+
+:::note Setting up Jenkins agent on Linux
+ It is required to add jenkins user into docker group on the Jenkins Linux agent machine where Docker is installed.  
+ Here is how to find the username of jenkins process running user and adding to docker group in Linux.
+
+```jsx title="Find the jenkins user"
+ ps aux | grep '/usr/bin/daemon' | grep 'jenkins' | awk {'print $1'}
+```
+```jsx title="Add to Docker group"
+ sudo usermod -a -G docker jenkins
+```
+Restart jenkins process.
+:::
+
+In this example below, we are building and publishing the test results from a TestNG project. The Jenkins pipeline uses the [Railflow Docker Image](https://hub.docker.com/r/railflow/railflow) which is available on DockerHub.
+```jsx title="Jenkins Pipeline Example"
+pipeline {
+   agent any
+   environment {
+       RAILFLOW_KEY = credentials('railflow-key') // see https://www.jenkins.io/doc/book/pipeline/jenkinsfile/#handling-credentials
+       TESTRAIL_CREDS = credentials('testrail-credentials') // see https://www.jenkins.io/doc/book/pipeline/jenkinsfile/#usernames-and-passwords      
+       TESTRAIL_URL = "https://testrail_server/"       
+   }
+   tools {
+       jdk 'default'
+       maven 'default'
+   }
+   stages {
+       stage('Checkout') {
+           script {
+               steps {
+                    git branch: 'master', url: 'https://github.com/railflow/testng_example.git'
+               }
+           }    
+       }
+       stage('Run unit tests') {
+           steps {
+               script {
+                   sh 'mvn clean test'
+               }
+           }
+       }
+   }
+   post {
+       always {
+           sh 'docker pull railflow/railflow:latest'
+           withDockerContainer('railflow/railflow:latest') {
+               sh 'railflow -k ${RAILFLOW_KEY} -url ${TESTRAIL_URL} -u ${TESTRAIL_CREDS_USR} -p ${TESTRAIL_CREDS_PSW} -pr \"Railflow Demo\" -path Demo/Pizza -f testng -r "**/surefire-reports/testng-results.xml" -sm path -tp "Test Plan" -cf \"Required text field=something\"'
+           }
+       }
+   }
+}
+```
 
 ## TestRail Export Details
 Railflow creates a very rich and flexible integration between Jenkins and TestRail. Based on Railflow configuration, TestRail entities can be created or updated automatically as part of your CICD process. The screenshots below shows the output of processing a typical JUnit test framework report. 
