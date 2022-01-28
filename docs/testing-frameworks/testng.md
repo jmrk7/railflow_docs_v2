@@ -36,7 +36,7 @@ Add the following dependency into `pom.xml` file
 <dependency>
 	<groupId>io.railflow.annotations</groupId>
 	<artifactId>railflow-testng-annotations</artifactId>
-	<version>0.2</version>
+	<version>0.4</version>
 	<scope>test</scope>
 </dependency>
 ```
@@ -81,7 +81,7 @@ If you are using Gradle as your JAVA build tool, simply follow these instruction
 Add the following dependency into `build.gradle` file
 
 ```jsx title="Railflow Dependency"
-testImplementation 'io.railflow.annotations:railflow-testng-annotations:0.2'
+testImplementation 'io.railflow.annotations:railflow-testng-annotations:0.4'
 ```
 
 ### Add Reporter
@@ -196,7 +196,54 @@ When using the `TestNG-STEPS` reporting format, Railflow `method level attribute
 | jiraIds                | ignored                         |
 | smartFailureAssignment | ignored                         |
 
-### Screenshots Attachments
+### Dynamic values for Annotations
+The values of Java annotations are defined at compile time and cannot be changed in the run time which might be not very convenient for users.
+Railflow fixes this  by providing special placeholders in the Railflow annotation attributes which are resolved in the runtime with environment variables or Java properties.  
+
+Such placeholders have the following form: `${placeholder}`, where `placeholder` is a name of the placeholder which should be used as an environment variable name or the name of Java property.  
+ 
+E.g. to provide the value for `${placeholder}`, the user should either define an environment variable with name `placeholder` or provide it as a Java property: `-Dplaceholder=someValue`
+ 
+If both Java property and environment variable are provided for the same placeholder, the value defined with Java property will take precedence.
+
+Dynamic placeholders can be used for all Railflow attributes except `testrailIds`, but you can still use environment variables or Java properties to set TestRail ID to the particular test case:  
+* Environment variables - set the name of a variable to the fully qualified name of a method and value to the comma-separated list of TestRail IDs, e.g.: `export io.railflow.demo.SampleTestClass.sampleTestMethod=1234,1235` and value of the variable to the value of TestRail ID(s), e.g.: `1234,1235`.
+* Java properties - set the name of the Java property to the fully qualified name of a method and value to the comma-separated list of TestRail IDs, e.g.: `-Dio.railflow.demo.SampleTestClass.sampleTestMethod=123,321,456`
+
+
+### Setting Railflow/TestRail attributes programmatically
+For a higher flexibility, Railflow provides a special `io.railflow.annotations.testng.CurrentTest` utility class for setting all Railflow/TestRail attributes programmatically directly in the source code of your tests.
+
+Utility methods are available for all Railflow attributes.
+
+:::tip
+If the corresponding attribute is set with Railflow annotation, its value will be overwritten by the value set with CurrentTest.
+:::
+
+Example of usage:
+```java
+package io.railflow.demo;
+
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+
+import io.railflow.annotations.testng.CurrentTest;
+import io.railflow.annotations.testng.RailflowReporter;
+
+@Listeners(RailflowReporter.class)
+public class HomeCabinetTest {
+
+	@Test
+	public void change_password() {
+		CurrentTest.setTitle("Change password");
+		// do something
+	}
+
+}
+```
+
+
+### Screenshots and attachments
 Test failures in Selenium WebDriver or Appium have the most important information in screenshots. Railflow provides `utility classes and several static methods` for taking automatic screenshot so that they can also be uploaded to TestRail along with the failure exception message (how cool)
 
 - `addAttachment(File attachmentFile)` : Adds arbitrary attachment file to the XML report.
