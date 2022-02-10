@@ -71,31 +71,31 @@ Add and configure the Railflow Build Step: `Railflow Plugin: TestRail Test Resul
 The Railflow build step provides users a host of options to integrate Teamcity with TestRail in a variety of ways and across any testing tool and framework. The reference below describes all the options and their usage.
 
 
-| Field Name                       | Required | Description                                                                                                                                                                                                                                                                                                                                                                                       |
-|----------------------------------|----------|-------------|
-| TestRail Server 	               | Yes	| Select one of the server names configured in "Global settings configuration"	|
-| TestRail Project                 | Yes   | The name of a project in TestRail to which results should be exported			|
-| Fail build if upload unsuccessful| N/A      | If checked, the build will be marked as failed if for any reason the plugin could not upload the results. This could be due to Railflow issues, TestRail server issues, network issues, etc.	|
-| Override TestRail Credentials	   | No	| If specified, it overrides TestRail user credentials defined in Global Configuration	|
-| Results File Pattern   | Yes      | The file path to the test report file(s) generated during the build. Ant-style patterns such as **\*\*/surefire-reports/\*.xml** can be used.<br/>E.g. use **target/surefire-reports/*.xml** to capture all XML files in **target/surefire-reports** directory.	|
-| Report Format            | Yes      | Results file format	|
-| Search Mode                      | Yes      | Specifies the test case lookup algorithm. <br/> **`Name`**: search for test case matching the name within the entire test suite. If test case found, update the test case. If test case not found, create a new test case within specified Test Case Path <br/> **`Path`**: search for test case matching the name within the specified Test Case Path. If test case found, update the test case. If test case not found, create a new test case within specified Test Case Path	|
-| Test Case Path				   | Yes | Path to where Railflow should upload test case definitions, must contain suite name in the beginning (for single-suite project, suite name is always 'Master'), e.g. Master/Section1/Section2 |
-| Test Plan Name     | No       | Name of a test plan in TestRail to which test results will be added |
-| Test Run Name     | No       | Name of a test run in TestRail to which test results will be added |
-| Milestone Path      | No       | Path to a milestone in TestRail to which test run/plan will be added.<br/>E.g. Milestone1/Milestone2 |
-| Smart Test Failure Assignment  |	No	| A comma separated list of user emails for smart failure assignment. Each failed result will be assigned to a person from this list in a round robin fashion<br/>|
-| Log Level | No | Logging level for the plugin log file (.railflow.log) |
-| Test Case Type   | No              | Name of a case type in TestRail, e.g. `Automated` |
-| Test Case Priority   | No           | Name of a case priority in TestRail, e.g. `High` |
-| Test Case Template   | No          | Name of a TestRail template. If it is blank, `Test Case (Steps)` will be used. |
-| Test Case Custom Fields  | No      |  Values for case fields in TestRail can be specified in this field. The format is [TestRail field label]=[value] and each field name\\value pair should start with the new line.<br/>E.g.:<br/>Custom Field One=foo<br/>Custom Field Two=bar |
-| Test Result Custom Fields | No     | Values for result fields in TestRail can be specified in this field. The format is [TestRail field label]=[value] and each field name\\value pair should start with the new line.<br/>E.g.:<br/>Custom Result Field One=foo<br/>Custom Result Field Two=bar |
-| Configuration Names   | No        | A list of configuration names in TestRail. The format is [Config Group Name]/[Config Name]. Each entry must start with the new line.<br/>E.g.:<br/>Operating Systems/Linux<br/>Browsers/Chrome|
-| Test case  to ID map  | No         | A list of test name to TestRail ID mappings. Each line contains a mapping between fully-qualified test case name and TestRail ID.<br/>E.g.: io.railflow.Test.method1=42<br/>io.railflow.Test.method2=43|
-| Disable Grouping	 | No          | If checked, Railflow will ignore structure in report files and upload all test cases into one Section, defined by the Test Path parameter. |
-| Close Run			 | No         | If checked, Railflow will close the test run in TestRail and archive its tests and results |
-| Close Plan		| No            | If checked, Railflow will close the test plan in TestRail and archive its tests and results |
+| Field Name                        | Required | Description                                                                                                                                                                                                                                                                                                                                                                                       |
+|-----------------------------------|----------|-------------|
+| TestRail Server 	                 | Yes	| Select one of the server names configured in "Global settings configuration"	|
+| TestRail Project                  | Yes   | The name of a project in TestRail to which results should be exported			|
+| Fail build if upload unsuccessful | N/A      | If checked, the build will be marked as failed if for any reason the plugin could not upload the results. This could be due to Railflow issues, TestRail server issues, network issues, etc.	|
+| Override TestRail Credentials	    | No	| If specified, it overrides TestRail user credentials defined in Global Configuration	|
+| Results File Pattern              | Yes      | The file path to the test report file(s) generated during the build. Ant-style patterns such as **\*\*/surefire-reports/\*.xml** can be used.<br/>E.g. use **target/surefire-reports/*.xml** to capture all XML files in **target/surefire-reports** directory.	|
+| Report Format                     | Yes      | Results file format	|
+| Search Mode                       | Yes      | Specifies the test case lookup algorithm. <br/> **`Name`**: search for test case matching the name within the entire test suite. If test case found, update the test case. If test case not found, create a new test case within specified Test Case Path <br/> **`Path`**: search for test case matching the name within the specified Test Case Path. If test case found, update the test case. If test case not found, create a new test case within specified Test Case Path	|
+| Test Case Path				                | Yes | Path to where Railflow should upload test case definitions, must contain suite name in the beginning (for single-suite project, suite name is always 'Master'), e.g. Master/Section1/Section2 |
+| Test Plan Name                    | No       | Name of a test plan in TestRail to which test results will be added |
+| Test Run Name                     | No       | Name of a test run in TestRail to which test results will be added |
+| Milestone Path                    | No       | Path to a milestone in TestRail to which test run/plan will be added.<br/>E.g. Milestone1/Milestone2 |
+| Smart Test Failure Assignment     |	No	| A comma separated list of user emails for smart failure assignment. Each failed result will be assigned to a person from this list in a round robin fashion<br/>|
+| Log Level                         | No | Logging level for the plugin log file (.railflow.log) |
+| Test Case Type                    | No              | Name of a case type in TestRail, e.g. `Automated` |
+| Test Case Priority                | No           | Name of a case priority in TestRail, e.g. `High` |
+| Test Case Template                | No          | Name of a TestRail template. If it is blank, `Test Case (Steps)` will be used. |
+| Test Case Custom Fields           | No      |  Values for case fields in TestRail can be specified in this field. The format is [TestRail field label]=[value] and each field name\\value pair should start with the new line.<br/>E.g.:<br/>Custom Field One=foo<br/>Custom Field Two=bar |
+| Test Result Custom Fields         | No     | Values for result fields in TestRail can be specified in this field. The format is [TestRail field label]=[value] and each field name\\value pair should start with the new line.<br/>E.g.:<br/>Custom Result Field One=foo<br/>Custom Result Field Two=bar |
+| Configuration Names               | No        | A list of configuration names in TestRail. The format is [Config Group Name]/[Config Name]. Each entry must start with the new line.<br/>E.g.:<br/>Operating Systems/Linux<br/>Browsers/Chrome|
+| Upload Mode                       | No         | Test case upload mode: <br/><b>Create new test cases and do not overwrite existing ones:</b><br/> If test case not found, create a new test case within specified Test Case Path.<br/> If test case found, do not update the test case.<br/> <b>Create new cases and overwrite existing ones:</b><br/> If test case not found, create a new test case within specified Test Case Path.<br/> If test case found, update the test case.<br/> <b>Do not create new cases and overwrite existing ones:</b><br/> If test case not found, do not create a new test case and the corresponding test result will not be uploaded into TestRail.<br/> If test case found, update the test case.<br/> <b>Do not create new cases and do not overwrite existing ones:</b><br/> If test case not found, do not create a new test case and the corresponding test result will not be uploaded into TestRail.<br/> If test case found, do not update the test case.|
+| Disable Grouping                     | No          | If checked, Railflow will ignore structure in report files and upload all test cases into one Section, defined by the Test Path parameter. |
+| Close Run			                      | No         | If checked, Railflow will close the test run in TestRail and archive its tests and results |
+| Close Plan		                      | No            | If checked, Railflow will close the test plan in TestRail and archive its tests and results |
 
 :::warning  TeamCity Behavior Alert
 To ensure that test results are posted to TestRail even if the TeamCity build fails (very common), set `Execute step` field to `Even if some of the previous steps failed`. 
