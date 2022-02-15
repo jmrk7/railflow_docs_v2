@@ -16,10 +16,9 @@ If you are using Jenkins or TeamCity, you can use the respective plugins or the 
 :::
 
 ### What test frameworks does the Railflow CLI support?
-:::info
-Railflow CLI and CI plugins support a host of testing framework reporting schemas and we're always adding support for new ones. Currently, Railflow supports JUnit, TestNG, Allure, Cucumber, Robot Framework, TRX, Postman, ReadyAPI, and Katalon.
+:::info Railflow CLI and CI plugins support a host of testing framework reporting schemas and we're always adding support for new ones. Currently, Railflow
+supports JUnit, TestNG, Allure, Cucumber, Robot Framework, TRX, xUnit, Postman, ReadyAPI, and Katalon.
 :::
-
 
 ![cli overview](/img/cli/cli-overview.png)
 
