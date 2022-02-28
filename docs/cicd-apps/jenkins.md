@@ -148,8 +148,8 @@ You can add multiple Raillflow post-build actions using `Add More` button. This 
 :::
 
 
-| Advanced Field Name | Description                                                                                                                                                                                                                                                                                                                                                                                  |
-|---------------------|---------------------------------------------------------------------------------------|
+| Advanced Field Name       | Description                                                                                                                                                                                                                                                                                                                                                                                  |
+|---------------------------|---------------------------------------------------------------------------------------|
 | Test Case Type            | Name of a case type in TestRail, e.g. `Automated` |
 | Test Case Priority        | Name of a case priority in TestRail, e.g. `High` |
 | Test Case Template        | Name of a TestRail template. If it is blank, `Test Case (Steps)` will be used. |
@@ -157,9 +157,10 @@ You can add multiple Raillflow post-build actions using `Add More` button. This 
 | Test Result Custom Fields | Values for result fields in TestRail can be specified in this field. The format is [TestRail field label]=[value] and each field name\\value pair should start with the new line.<br/>E.g.:<br/>Custom Result Field One=foo<br/>Custom Result Field Two=bar |
 | Configuration Names       | A list of configuration names in TestRail. The format is [Config Group Name]/[Config Name]. Each entry must start with the new line.<br/>E.g.:<br/>Operating Systems/Linux<br/>Browsers/Chrome|
 | Upload Mode               | <div> <b>Test case upload mode:</b> <ul> <li><b>Create new test cases and do not overwrite existing ones:</b><br/> If test case not found, create a new test case within specified Test Case Path.<br/> If test case found, do not update the test case.<br/> Value for pipeline: CREATE_NO_UPDATE </li> <li><b>Create new cases and overwrite existing ones:</b><br/> If test case not found, create a new test case within specified Test Case Path.<br/> If test case found, update the test case.<br/> Value for pipeline: CREATE_UPDATE </li> <li> <b>Do not create new cases and overwrite existing ones:</b><br/> If test case not found, do not create a new test case and the corresponding test result will not be uploaded into TestRail.<br/> If test case found, update the test case.<br/> Value for pipeline: NO_CREATE_UPDATE </li> <li> <b>Do not create new cases and do not overwrite existing ones:</b><br/> If test case not found, do not create a new test case and the corresponding test result will not be uploaded into TestRail.<br/> If test case found, do not update the test case.<br/> Value for pipeline: NO_CREATE_NO_UPDATE </li> </ul> </div> |
-| Disable Grouping            | If checked, Railflow will ignore structure in report files and upload all test cases into one Section, defined by the Test Path parameter. |
-| Close Run			        | If checked, Railflow will close the test run in TestRail and archive its tests and results |
-| Close Plan		        | If checked, Railflow will close the test plan in TestRail and archive its tests and results |
+| Disable Grouping          | If checked, Railflow will ignore structure in report files and upload all test cases into one Section, defined by the Test Path parameter. |
+| Close Run	             | If checked, Railflow will close the test run in TestRail and archive its tests and results |
+| Close Plan		         | If checked, Railflow will close the test plan in TestRail and archive its tests and results |
+| Full Case Names	         | If checked, Railflow will use qualified names to testrail case names |
 
 ## NPM Package (option 2)
 :::note NPM approach
