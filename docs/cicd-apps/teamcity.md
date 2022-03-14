@@ -97,7 +97,7 @@ The Railflow build step provides users a host of options to integrate Teamcity w
 | Disable Grouping                  | No       | If checked, Railflow will ignore structure in report files and upload all test cases into one Section, defined by the Test Path parameter. |
 | Close Run			                      | No       | If checked, Railflow will close the test run in TestRail and archive its tests and results |
 | Close Plan		                      | No       | If checked, Railflow will close the test plan in TestRail and archive its tests and results |
-| Full Case Names	                  | No       | If checked, Railflow will use qualified names to testrail case names |
+| Full Case Names	                  | No       | If checked, Railflow will use fully qualified test names from the report files for test names in TestRail |
 
 :::warning  TeamCity Behavior Alert
 To ensure that test results are posted to TestRail even if the TeamCity build fails (very common), set `Execute step` field to `Even if some of the previous steps failed`. 

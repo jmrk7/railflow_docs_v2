@@ -161,7 +161,7 @@ You can add multiple Raillflow post-build actions using `Add More` button. This 
 | Disable Grouping          | If checked, Railflow will ignore structure in report files and upload all test cases into one Section, defined by the Test Path parameter. |
 | Close Run	                | If checked, Railflow will close the test run in TestRail and archive its tests and results |
 | Close Plan		              | If checked, Railflow will close the test plan in TestRail and archive its tests and results |
-| Full Case Names	          | If checked, Railflow will use qualified names to testrail case names |
+| Full Case Names	          | If checked, Railflow will use fully qualified test names from the report files for test names in TestRail |
 
 ## NPM Package (option 2)
 :::note NPM approach
