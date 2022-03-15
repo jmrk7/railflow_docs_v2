@@ -95,9 +95,9 @@ The Railflow build step provides users a host of options to integrate Teamcity w
 | Case Search Field                 | No       | The name of the case field in TestRail which will be using for searching for existing test cases instead of test case title |
 | Upload Mode                       | No       | Test case upload mode: <br/><b>Create new test cases and do not overwrite existing ones:</b><br/> If test case not found, create a new test case within specified Test Case Path.<br/> If test case found, do not update the test case.<br/> <b>Create new cases and overwrite existing ones:</b><br/> If test case not found, create a new test case within specified Test Case Path.<br/> If test case found, update the test case.<br/> <b>Do not create new cases and overwrite existing ones:</b><br/> If test case not found, do not create a new test case and the corresponding test result will not be uploaded into TestRail.<br/> If test case found, update the test case.<br/> <b>Do not create new cases and do not overwrite existing ones:</b><br/> If test case not found, do not create a new test case and the corresponding test result will not be uploaded into TestRail.<br/> If test case found, do not update the test case.|
 | Disable Grouping                  | No       | If checked, Railflow will ignore structure in report files and upload all test cases into one Section, defined by the Test Path parameter. |
-| Close Run			                      | No       | If checked, Railflow will close the test run in TestRail and archive its tests and results |
-| Close Plan		                      | No       | If checked, Railflow will close the test plan in TestRail and archive its tests and results |
-| Full Case Names	                  | No       | If checked, Railflow will use fully qualified test names from the report files for test names in TestRail |
+| Close Run			             | No       | If checked, Railflow will close the test run in TestRail and archive its tests and results |
+| Close Plan		                 | No       | If checked, Railflow will close the test plan in TestRail and archive its tests and results |
+| Fully Qualified Test Name         | No       | If checked, Railflow will use fully qualified test names from the report files for test names in TestRail |
 
 :::warning  TeamCity Behavior Alert
 To ensure that test results are posted to TestRail even if the TeamCity build fails (very common), set `Execute step` field to `Even if some of the previous steps failed`. 
