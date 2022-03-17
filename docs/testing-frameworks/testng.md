@@ -41,7 +41,7 @@ Add the following dependency into `pom.xml` file
 </dependency>
 ```
 
-### Configure Sure-Fire Plugin
+### Configure Surefire Plugin
 Configure Maven Surefire plugin. This together with the Railflow dependency will generate an enriched report `railflow_report.xml` in the `target/surefire-reports` directory during `mvn test`. This file contains additional information and can be consumed by Railflow NPM package or Railflow CI plugins.
 
 ```jsx title="Railflow Surefire Plugin"
@@ -75,7 +75,7 @@ public class SimpleTest {
 ```
 
 ## Gradle Setup
-If you are using Gradle as your JAVA build tool, simply follow these instructions to integrate Railflow JAVA SDK with your Gradle project.
+If you are using Gradle as your Java build tool, simply follow these instructions to integrate Railflow Java SDK with your Gradle project.
 
 ### Add Dependency 
 Add the following dependency into `build.gradle` file
@@ -100,7 +100,7 @@ test
 After the configuration above has been added, whenever tests run, the `railflow_report.xml` file is generated in `build/reports/tests/test` directory. This file contains additional information and can be consumed by Railflow NPM package or Railflow CI plugins.
 
 
-## Plain JAVA Setup
+## Plain Java Setup
 For plain Java project which does not use Maven or Gradle, the Railflow Annotation Package can be still used, because it is directly integrated with TestNG (how cool)
 
 
@@ -123,7 +123,7 @@ public class RailflowTest {
 After the configuration above has been added, whenever tests run, the `railflow_report.xml` file is generated in `test-output` directory. This file contains additional information and can be consumed by Railflow NPM package and Railflow CI plugins.
 
 ## Using Railflow Annotations
-After setting up your `Maven/Gradle/JAVA` project by following the steps above, now comes the fun part. Railflow annotations package allows users to work with powerful attributes that can be applied at the `class` or `test level`. In the section below, we will cover the many ways you can decorate your tests with Railflow annotations.
+After setting up your `Maven/Gradle/Java` project by following the steps above, now comes the fun part. Railflow annotations package allows users to work with powerful attributes that can be applied at the `class` or `test level`. In the section below, we will cover the many ways you can decorate your tests with Railflow annotations.
 
 ### TestNG Reporting Formats
 Railflow can upload the TestNG XML report to TestRail in one of two ways.
@@ -205,7 +205,7 @@ Test failures in Selenium WebDriver or Appium have the most important informatio
 
 
 ## Annotations Examples 
-Here are some JAVA code examples on how you would use TestRail annotations at the method or class level and what the results would like in TestRail
+Here are some Java code examples on how you would use TestRail annotations at the method or class level and what the results would like in TestRail
 
 ### Class Level Annotations
 
