@@ -2,9 +2,34 @@
 sidebar_position: 3
 ---
 
-# NPM CLI 
+# NPM CLI
+
+## Release: 2.1.4
+
+New Features
+>
+- Add new `--upload-mode` CLI switch and do not update the existing test cases in TestRail by default (Railflow just adds a run results for them)
+- Make test case search case-insensitive
+- Add support for enhanced MSTest reports (https://github.com/railflow/railflow-mstest-examples)
+- Add new `--case-search-field` CLI switch
+
+Bug Fixes
+>
+- No error message is displayed for test step Actual field (only stack trace) for TRX reports
+- `npm install railflow` command failed on Node 17 and macOS.
+
+## Release: 2.1.3
+
+New Features
+>
+- Add support for MSTest/TRX reports
+
+Bug Fixes
+>
+- ETIMEDOUT on uploading large report files to TestRail Cloud via proxy server
 
 ## Release: 2.1.2
+
 New Features
 >
 - Add support for enhanced NUnit reports (https://github.com/railflow/nunit_example)

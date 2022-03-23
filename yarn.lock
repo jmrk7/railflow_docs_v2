@@ -3185,6 +3185,16 @@ dns-txt@^2.0.2:
   dependencies:
     buffer-indexof "^1.0.0"
 
+docusaurus-plugin-hotjar@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/docusaurus-plugin-hotjar/-/docusaurus-plugin-hotjar-0.0.2.tgz#cd79d4c446ff57872041abeedae811946581e020"
+  integrity sha512-Jsdxa6k4YQm4SBiY5mv9h/6sKUrQs6lC6mRoPUfjiPVtnhURE3d0dj4Vnrpy/tRVSAbywAqA0F/PGn5RKHtVaw==
+
+docusaurus-plugin-script-tags@^2.0.0-beta.6:
+  version "2.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/docusaurus-plugin-script-tags/-/docusaurus-plugin-script-tags-2.0.0-beta.6.tgz#19cfe0bc4f22e5435c513483dae6d6f370ef362c"
+  integrity sha512-kUJ9DS7cK7RTt1pqfmQG0lDjmuIq52y87l4lM7EmfdBvZowi1wTQ6eDszxjn8Oo9Lpv0g1MP8g+uTudUIWp0hQ==
+
 dom-converter@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/dom-converter/-/dom-converter-0.2.0.tgz#6721a9daee2e293682955b6afe416771627bb768"
