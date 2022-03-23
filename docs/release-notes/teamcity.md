@@ -4,6 +4,24 @@ sidebar_position: 2
 
 # TeamCity Plugin
 
+## Release: 2.3
+New Features
+>
+- Add support for Robot native reports
+- Add support for custom Railflow Python reports (https://docs.railflow.io/docs/testing-frameworks/pytest)
+- Add support for SpecFlow NUnit reports
+- Add support for customized xUnit reports (https://github.com/railflow/railflow-xunit-examples)
+- Add support for custom MSTest (TRX) reports (https://github.com/railflow/railflow-mstest-examples)
+- Add "Fully Qualified Test Name" parameter which allows exporting fully qualified test names into TestRail
+- Add "Case Search Field" parameter which allows Railflow to search for existing tests cases by the value of some custom field
+- Railflow searches for the existing tests in TestRail in case-insensitive way
+- Add "Upload Mode" parameter which controls whether Railflow should create new tests and update existing tests in TestRail
+
+Bug Fixes
+>
+- MSTest (TRX) reports: incorrect handling of Smart Failure Assignment from the report
+
+
 ## Release: 2.2
 New Features
 >
