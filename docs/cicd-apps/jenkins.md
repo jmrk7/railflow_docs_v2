@@ -98,7 +98,9 @@ pipeline {
     railflow(
         testRailServerName: 'TestRail',
         testRailProjectName: 'Railflow Demo',
-        failIfUploadFailed: true,
+        failIfUploadFailed: true, 
+        overriddenUserName: 'userName', 
+        overriddenPassword: 'password',
         jobConfigurations: [[configurationNames: '''OS/Linux
             Browser/Chrome''', 
         milestonePath: 'M1/M2', 
@@ -114,11 +116,54 @@ pipeline {
         testReportFormat: 'JUNIT', 
         testResultCustomFields: '''Custom field=Results from Jenkins
             version=2.0''', 
-        testRunName: '${JOB_NAME}-${BUILD_NUMBER}']])
+        testRunName: '${JOB_NAME}-${BUILD_NUMBER}'
+        smartTestFailureAssignment: 'user1@abc.com, user2@abc.com', 
+        testCaseTemplate: 'template1', 
+        caseSearchField: 'case search field name', 
+        uploadMode: 'CREATE_NO_UPDATE', 
+        disableGrouping: true, 
+        closeRun: true, 
+        closePlan: true, 
+        fullCaseNamesAllowed: true ]])
       }
     }
 }
 ```
+#### Railflow param definitions
+
+| Key                                | Required | Description 
+| -----------------------------------|----------|----------------
+| testRailServerName                 | Yes      |  One of the server names configured in "Global settings configuration"                                                                                                                                                                                                                                                                                                                                                                                                                      
+| testRailProjectName                | Yes      |  The name of a project in TestRail to which results should be exported	                                                                                                                                                                                                                                                                                                                                                                     
+| failIfUploadFailed                 | No       |  If true, the build will be marked as failed if for any reason the plugin could not upload the results. This could be due to Railflow issues, TestRail server issues, network issues, etc.                                                                                                                                                                                                                                                                                                                                    
+| overriddenUserName                 | No       |  If specified, it overrides TestRail user name defined in Global Configuration
+| overriddenPassword                 | No       |  If specified, it overrides TestRail password defined in Global Configuration
+| jobConfigurations                  | Yes      |  This can contain job configuration parameters defined below
+
+##### Job configuration parameters
+
+| Key                                | Required | Description
+| -----------------------------------|----------|----------------
+| resultFilePattern                  | Yes      |  The file path to the test report file(s) generated during the build. Ant-style patterns such as **\*\*/surefire-reports/\*.xml** can be used.<br/>E.g. use **target/surefire-reports/*.xml** to capture all XML files in **target/surefire-reports** directory.                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+| searchMode                         | Yes      |  Specifies the test case lookup algorithm. <br/> **`Name:`** search for test case matching the name within the entire test suite. If test case found, update the test case. If test case not found, create a new test case within specified Test Case Path <br/> **`Path`**: search for test case matching the name within the specified Test Case Path. If test case found, update the test case. If test case not found, create a new test case within specified Test Case Path
+| testCasePath                       | No      |  Path to where Railflow should upload test case definitions, must contain suite name in the beginning (for single-suite project, suite name is always 'Master'), e.g. Master/Section1/Section2
+| testPlanName                       | No      |  Name of a test plan in TestRail to which test results will be added
+| testRunName                        | No      |  Name of a test run in TestRail to which test results will be added
+| milestonePath                      | No      |  Path to a milestone in TestRail to which test run/plan will be added.<br/>E.g. Milestone1/Milestone2
+| smartTestFailureAssignment         | No      |  A comma separated list of user emails for smart failure assignment. Each failed result will be assigned to a person from this list in a round robin fashion<br/>
+| testCaseType                       | No      |  Name of a case type in TestRail, e.g. `Automated`
+| testCasePriority                   | No      |  Name of a case priority in TestRail, e.g. `High`
+| testCaseTemplate                   | No      |  Name of a TestRail template. If it is blank, `Test Case (Steps)` will be used
+| testCaseCustomFields               | No      |  Values for case fields in TestRail can be specified in this field. The format is [TestRail field label]=[value] and each field name\\value pair should start with the new line.<br/>E.g.:<br/>Custom Field One=foo<br/>Custom Field Two=bar
+| testResultCustomFields             | No      |  Values for result fields in TestRail can be specified in this field. The format is [TestRail field label]=[value] and each field name\\value pair should start with the new line.<br/>E.g.:<br/>Custom Result Field One=foo<br/>Custom Result Field Two=bar
+| configurationNames                 | No      | A list of configuration names in TestRail. The format is [Config Group Name]/[Config Name]. Each entry must start with the new line.<br/>E.g.:<br/>Operating Systems/Linux<br/>Browsers/Chrome
+| caseSearchField                    | No      |  The name of the case field in TestRail which will be using for searching for existing test cases instead of test case title
+| uploadMode                         | No      |  <div> <b>Test case upload mode:</b> <ul> <li><b>Create new test cases and do not overwrite existing ones:</b><br/> If test case not found, create a new test case within specified Test Case Path.<br/> If test case found, do not update the test case.<br/> Value for pipeline: CREATE_NO_UPDATE </li> <li><b>Create new cases and overwrite existing ones:</b><br/> If test case not found, create a new test case within specified Test Case Path.<br/> If test case found, update the test case.<br/> Value for pipeline: CREATE_UPDATE </li> <li> <b>Do not create new cases and overwrite existing ones:</b><br/> If test case not found, do not create a new test case and the corresponding test result will not be uploaded into TestRail.<br/> If test case found, update the test case.<br/> Value for pipeline: NO_CREATE_UPDATE </li> <li> <b>Do not create new cases and do not overwrite existing ones:</b><br/> If test case not found, do not create a new test case and the corresponding test result will not be uploaded into TestRail.<br/> If test case found, do not update the test case.<br/> Value for pipeline: NO_CREATE_NO_UPDATE </li> </ul> </div>
+| disableGrouping                    | No      |  If true, Railflow will ignore structure in report files and upload all test cases into one Section, defined by the Test Path parameter.
+| closeRun                           | No      |  If true, Railflow will close the test run in TestRail and archive its tests and results
+| closePlan                          | No      |  If true, Railflow will close the test plan in TestRail and archive its tests and results
+| fullCaseNamesAllowed               | No      |  If true, Railflow will use fully qualified test names from the report files for test names in TestRail
+
 
 ### Post-Build Action Reference
 Both the Jenkinsfile and Freestyle job depend on the `Railflow Plugin: TestRail Test Results Processor` post-build action to process test results and post them to TestRail. This action provides users a host of options to integrate Jenkins with TestRail in a variety of ways and across any testing tool and framework. The reference below describes all the options and their usage.
@@ -163,7 +208,7 @@ You can add multiple Raillflow post-build actions using `Add More` button. This 
 | Close Plan		         | If checked, Railflow will close the test plan in TestRail and archive its tests and results |
 | Fully Qualified Test Name | If checked, Railflow will use fully qualified test names from the report files for test names in TestRail |
 
-## NPM Package (option 2)
+## NPM Package (option 2)| testCaseType                        | No      |  Name of a case type in TestRail, e.g. `Automated`
 :::note NPM approach
 If you cannot use Jenkins plugin for some reason, Railflow is also available as a [NPM command line tool](https://www.npmjs.com/package/railflow). You would install Railflow NPM package just like your would install any other NPM module. Railflow NPM package can be pre-installed on the Jenkins agent, or you can install it at run-time. 
 :::
