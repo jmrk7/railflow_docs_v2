@@ -8,7 +8,7 @@ sidebar_position: 1
 New Features
 >
 - Add support for Robot native reports
-- Add support for custom Railflow Python reports (https://docs.railflow.io/docs/testing-frameworks/pytest)
+- Add support for custom Railflow Pytest reports (https://docs.railflow.io/docs/testing-frameworks/pytest)
 - Add support for SpecFlow NUnit reports
 - Add support for customized xUnit reports (https://github.com/railflow/railflow-xunit-examples)
 - Add support for custom MSTest (TRX) reports (https://github.com/railflow/railflow-mstest-examples)
