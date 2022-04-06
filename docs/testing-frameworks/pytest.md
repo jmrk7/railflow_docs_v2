@@ -6,14 +6,16 @@ sidebar_position: 3
 
 ## Overview
 :::info
-Railflow Pytest plugin allows Pytest users to easily integrate their Pytest framework tests with TestRail using Railflow Pytest `markers`. This integration, allows users to `map` Pytest tests to tests, suites, plans, milestones, and runs in TestRail. You can also use these markers to automatically take and attach screenshot for failing tests. This is particularly useful for Selenium WebDriver and Appium tests.
+[Railflow](https://railflow.io) Pytest plugin is a part of the Railflow platform which allows users to easily integrate their Pytest tests with TestRail using Railflow Pytest markers. The plugin generates test results in JSON format which contains screenshots and various useful metadata.
 :::
 
 ## How does Railflow Pytest Plugin work?
 :::info
-Pytest like all other test framework, produces a test results xml using `pytest --junitxml=path` argument. Railflow CI Plugins and CLI can process this results file and automatically parse and upload them into TestRail. For most users, this would be sufficient. For user that have a need to `map` Pytest tests to tests in TestRail or want to use automatic screenshots, they would need to use the Railflow Pytest plugin. 
-
-Railflow Pytest plugin produces an enriched json report via `pytest --jsonfile results.json` argument. This report is then processed by Railflow CI Plugins and CLI in the same way and you end up with advanced mapping and configuration results in TestRail.
+Pytest like all other test frameworks produces test reports and Railflow plugin produces test results JSON file using `pytest --jsonfile results.json` argument. Railflow CI Plugins and [NPM CLI](https://www.npmjs.com/package/railflow) can process this reports file and upload results into TestRail.  
+The Pytest plugin provides the following features:
+- Map Pytest tests into one or several test cases in TestRail by providing test case IDs.
+- Attach screenshots and arbitrary attachments to the test case results in TestRail.
+- Provide values for TestRail custom case and result fields for individual test cases.
 :::
 
 
@@ -22,9 +24,11 @@ Railflow Pytest plugin produces an enriched json report via `pytest --jsonfile r
 - Pytest
 
 ## Installation
-[Railflow pytest plugin](https://pypi.org/project/pytest-railflow-testrail-reporter/) is available on pypi and easily installable using pip 
+[Railflow pytest plugin](https://pypi.org/project/pytest-railflow-testrail-reporter/) is available on PyPI and can be easily installed using pip 
 
-`pip install pytest-railflow-testrail-reporter`
+```shell
+pip install pytest-railflow-testrail-reporter
+```
 
 ## Railflow Plugin Usage
 Railflow pytest plugin exposes the `@pytest.mark.railflow` marker at the class and function level. 
@@ -40,7 +44,7 @@ case_fields| Values for custom case fields in TestRail,  <br/>` e.g.: ['field1=v
 result_fields| Values for result fields in TestRail,  <br/>`e.g.: ['field1=value1','field2=value2']`|
 jira_ids| Jira IDs.These values will be populated as a case field 'refs'. Should input as an array of strings,  <br/>`e.g.: ['jid1','jid2']`
 testrail_ids| IDs of test cases in TestRail. Should input as an array of integers,  <br/>`e.g.: [1,2,3]`
-smart_failure_assignment| Array of TestRail users to automatically assign failed test cases. Should input as a string array,  <br/>`e.g.: ['aaa@test.com','bbb@test.com']`
+smart_failure_assignment| Array of TestRail users to automatically assign failed test cases. Should input as a string array,  <br/>`e.g.: ['user1@domain.com','user2@domain.com']`
 
 These attributes can be either used in class level or function level.
 
@@ -140,14 +144,13 @@ def test_add(testrail_add_screenshot):
     b = 2
     c = a + b
     assert c == 5
-    testrail_add_screenshot("screenshot path")
+    testrail_add_screenshot("image.png")
 ```
 
 ### Selenium Automatic Screenshots
 
-Railflow plugin supports [Pytest Splinter](https://github.com/pytest-dev/pytest-splinter) and if your selenium/appium tests uses pytest-splinter plugin, then Railflow plugin automatically takes screenshots of failed tests and upload them to TestRail (yes, really)
+Railflow plugin supports [Pytest Splinter](https://github.com/pytest-dev/pytest-splinter) and if your selenium/appium tests use pytest-splinter plugin, then Railflow plugin automatically takes screenshots of failed tests and upload them to TestRail (yes, really)
 
-test_browser.py
 ```jsx title="Pytest splinter example"
 import pytest
 
@@ -192,8 +195,7 @@ pytest --splinter-webdriver chrome --jsonfile test_results.json test_browser.py
 
 ### View Report
 
-test_results.json
-```shell
+```jsx title="test_results.json"
 [
     {
         "class_name": null,
@@ -237,16 +239,16 @@ test_results.json
 
 ### Running Examples
 
-1. Install 'pytest-railflow-testrail-reporter' .
+1. Install `pytest-railflow-testrail-reporter`.
 
 ```shell
 $ pip install pytest-railflow-testrail-reporter
 ```
 
-2. Add pytest test with Railfllow marker on class level.
+2. Add pytest test with Railflow marker on the class level.
 
-test_calculation.py
-```shell
+
+```jsx title="test_calculation.py"
 import pytest
 
 @pytest.mark.railflow(
@@ -514,7 +516,7 @@ npm install railflow
 6. Run Railflow CLI and upload test results into TestRail
 
 ```shell
-npx railflow -k ABCDE-12345-FGHIJ-67890 -url https://testrail.your-server.com/ -u testrail-username -p testrail-password -pr "Railflow Demo" -path section1/section2 -f pytest-railflow -r pytest_example/*.json -sm path
+npx railflow -k ABCDE-12345-FGHIJ-67890 -url https://testrail.your-server.com/ -u testrail-username -p testrail-password -pr "Railflow Demo" -path Railflow/Demo -f pytest-railflow -r pytest_example/*.json -sm path
 ```
 
 Where:
