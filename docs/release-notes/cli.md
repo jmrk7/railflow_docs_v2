@@ -4,6 +4,13 @@ sidebar_position: 3
 
 # NPM CLI
 
+## Release: 2.1.8
+
+Bug Fixes
+>
+- Railflow does not create root section if sub-section with the same name exists in some other section
+
+
 ## Release: 2.1.7
 >
 Maintenance release, no new features/bug fixes
