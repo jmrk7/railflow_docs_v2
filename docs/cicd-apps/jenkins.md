@@ -208,7 +208,7 @@ You can add multiple Raillflow post-build actions using `Add More` button. This 
 | Close Plan		         | If checked, Railflow will close the test plan in TestRail and archive its tests and results |
 | Fully Qualified Test Name | If checked, Railflow will use fully qualified test names from the report files for test names in TestRail |
 
-## NPM Package (option 2)| testCaseType                        | No      |  Name of a case type in TestRail, e.g. `Automated`
+## NPM Package (option 2)
 :::note NPM approach
 If you cannot use Jenkins plugin for some reason, Railflow is also available as a [NPM command line tool](https://www.npmjs.com/package/railflow). You would install Railflow NPM package just like your would install any other NPM module. Railflow NPM package can be pre-installed on the Jenkins agent, or you can install it at run-time. 
 :::
