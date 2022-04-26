@@ -4,6 +4,12 @@ sidebar_position: 3
 
 # NPM CLI
 
+## Release: 2.1.9
+
+New Features
+>
+- Add new `--untested-status` CLI switch for providing a name of the status to use in TestRail for untested/skipped tests
+
 ## Release: 2.1.8
 
 Bug Fixes
