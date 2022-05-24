@@ -4,6 +4,12 @@ sidebar_position: 3
 
 # NPM CLI
 
+## Release: 2.1.10
+
+New Features
+>
+- Set test case title into the field defined by -csf parameter on test case creation
+
 ## Release: 2.1.9
 
 New Features
