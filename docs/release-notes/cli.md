@@ -4,6 +4,41 @@ sidebar_position: 3
 
 # NPM CLI
 
+## Release: 2.1.10
+
+New Features
+>
+- Set test case title into the field defined by -csf parameter on test case creation
+
+## Release: 2.1.9
+
+New Features
+>
+- Add new `--untested-status` CLI switch for providing a name of the status to use in TestRail for untested/skipped tests
+
+## Release: 2.1.8
+
+Bug Fixes
+>
+- Railflow does not create root section if sub-section with the same name exists in some other section
+
+
+## Release: 2.1.7
+>
+Maintenance release, no new features/bug fixes
+
+## Release: 2.1.6
+
+New Features
+>
+- Add support for custom test steps in Railflow Pytest report (https://docs.railflow.io/docs/testing-frameworks/pytest)
+
+Bug Fixes
+>
+- Duplicate sections are created when search mode is `path`
+- "Field :parent_id is not a valid section." error in multi-suite project when search mode is `path`
+- Incorrect handling of Smart Failure Assignment for custom MSTest (TRX) format
+
 ## Release: 2.1.5
 
 New Features
