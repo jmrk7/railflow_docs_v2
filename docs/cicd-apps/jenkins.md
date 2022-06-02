@@ -24,7 +24,7 @@ Railflow can be used within Jenkins in a variety of ways.
 
 ## Jenkins Plugin (option 1)
 :::note Plugin approach
-Railflow Jenkins plugin is a commerical product. As such, it is not availble in the Jenkins plugin directory. Railflow Jenkins plugin (hpi file) can be download from the website's download section.
+Railflow Jenkins plugin is a commercial product. As such, it is not available in the Jenkins plugin directory. Railflow Jenkins plugin (hpi file) can be downloaded from the website's download section.
 :::
 
 ### Installation
