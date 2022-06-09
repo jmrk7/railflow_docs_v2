@@ -12,11 +12,11 @@ sidebar_position: 5
 * Map Robot tests into one or several test cases in TestRail by providing test case IDs.
 * Attach screenshots to the test case results in TestRail.
 * Provide values for TestRail custom case and result fields for each run.
-  :::
+:::
 
 ### Running Examples
 
-1. Add Robot test .
+1. Add Robot test.
 
 test_browser.robot
 ```shell
