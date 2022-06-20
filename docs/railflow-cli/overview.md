@@ -15,7 +15,7 @@ Railflow NPM based CLI is meant to be a cross-platform stand-alone utility so th
 If you are using Jenkins or TeamCity, you can use the respective plugins or the Railflow CLI. If you are using any of the SAAS CICD systems like Gitlab, GitHub, CircleCI, Travis CI, etc., you can use the Railflow CLI via NPM or Docker to easily integrate Railflow into your CICD process. 
 :::
 
-## How much does Railflow CLI cost?
+### How much does Railflow CLI cost?
 :::info
 Railflow CLI has a free edition for JUnit reports, and it includes full access to our support portal and Slack channel.  
 
