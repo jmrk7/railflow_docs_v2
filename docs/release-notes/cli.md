@@ -4,6 +4,20 @@ sidebar_position: 3
 
 # NPM CLI
 
+## Release: 2.1.11
+New Features
+>
+- Release for free license model. Support for JUnit reports
+- Cucumber reports: Do not create separate steps for before/after hooks
+- Cucumber reports: Add ability to map cucumber tests into existing test cases in TestRail by providing the ID in 'testrail.id' cucumber tag.
+- Allure reports: Add ability to map allure tests into existing test cases in TestRail by providing the ID in 'testrail.id' tag.
+- Robot reports: Add only fail and warn messages into step's 'Actual' field
+
+Bug Fixes
+>
+- Not all warning are displayed in the end of export
+- JUnit report: read error and failure from //error/@message element
+
 ## Release: 2.1.10
 
 New Features
