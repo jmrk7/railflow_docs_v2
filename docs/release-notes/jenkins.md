@@ -4,6 +4,24 @@ sidebar_position: 1
 
 # Jenkins Plugin
 
+## Release: 2.4
+New Features
+>
+- Pytest reports: add support for custom test steps
+- Robot reports: map robot tests into existing TestRail test cases by reading ID from "testrail.id" tag in robot report
+- Set case title into the field defined by "Case Search Field" parameter on case creation
+- Cucumber reports: Do not create separate steps for before/after hooks
+- Cucumber reports: Add ability to map cucumber tests into existing test cases in TestRail by providing the ID in 'testrail.id' cucumber tag
+- Robot reports: Add only fail and warn messages into step's 'Actual' field
+- Allure reports: Add ability to map allure tests into existing test cases in TestRail by providing the ID in 'testrail.id' tag
+
+Bug Fixes
+>
+- "JSONObject["jobConfigurations"] is not a JSONObject" error while saving multiple Railflow upload configurations
+- Robot reports: incorrect calculation of Elapsed time
+- Pytest reports: failed tests in one class are always assigned to the first user from the list
+- Cannot set value for custom multiselect field
+
 ## Release: 2.3
 New Features
 >
