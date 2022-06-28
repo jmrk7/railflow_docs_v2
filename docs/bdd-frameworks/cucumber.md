@@ -105,6 +105,31 @@ Feature: Pizza tests
     When the user enters "bad pizza" and hits Enter
     Then no results are shown
 ```
+### Map scenario into existing TestRail test case by ID
+
+Railflow allows users to map Cucumber scenario's test result into existing test case in TestRail.  
+ 
+This can be done by tagging the corresponding Cucumber scenario with `@testrail.id` tag.  
+
+`@testrail.id` tag has the following syntax: `@testrail.id=<TestCase ID>`  
+, where `TestCase ID` is the ID of the test case in TestRail, e.g.: `@testrail.id=C1234` or `@testrail.id=1234`
+
+```jsx title="Mapping cucumber scenario into TestRail test case"
+Feature: Pizza tests
+  Some tests for pizza search
+
+  Background:
+    Given user navigates to http://google.com
+
+  @testrail.id=C1234
+  Scenario: There are results for pizza
+    When the user enters "pizza" and hits Enter
+    Then number of results more than zero
+
+  Scenario: There are no bad pizzas
+    When the user enters "bad pizza" and hits Enter
+    Then no results are shown
+```
 
 ### Implement Scenario
 To implement a scenario, create a new `io.railflow.demo.cucumber.PizzaTests` class which contain methods for steps:
