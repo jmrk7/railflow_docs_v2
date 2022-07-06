@@ -14,7 +14,7 @@ There are two ways of how Cypress results can be integrated with TestRail:
 :::
 
 ## Using built-in JUnit reporter
-In case if you use the standard JUnit reporter, Cypress will produce JUnit XML files which can be uploaded into Railflow using either [Railflow CLI](docs/railflow-cli/cli-reference.md) or native [Jenkins](docs/cicd-apps/jenkins.md)/[TeamCity](docs/cicd-apps/teamcity.md) plugins.
+In case if you use the standard JUnit reporter, Cypress will produce JUnit XML files which can be uploaded into Railflow using either [Railflow CLI](railflow-cli/cli-reference.md) or native [Jenkins](cicd-apps/jenkins.md)/[TeamCity](cicd-apps/teamcity.md) plugins.
 
 ## Using custom Railflow Cypress reporter
 :::info
