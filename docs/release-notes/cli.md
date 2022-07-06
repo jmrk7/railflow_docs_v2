@@ -4,6 +4,20 @@ sidebar_position: 3
 
 # NPM CLI
 
+## Release: 2.1.12
+New Features
+>
+- Robot: Read test case ID from `testrail.id` tag
+- Add new RAILFLOW_TR_URL environment variable
+
+Bug Fixes
+>
+- Cucumber: Data tables should be displayed in test steps
+- Cucumber: "TypeError: The "data" argument must be of type string or an instance.... Received undefined" error
+- Cannot set value for custom multiselect field
+- When project does not have users and Smart Failure Assignment is set, no warning is displayed
+- "error data: Field :custom_required_field is a required field" is displayed instead of a nice validation error message when user provides empty value for a required field
+
 ## Release: 2.1.11
 New Features
 >
