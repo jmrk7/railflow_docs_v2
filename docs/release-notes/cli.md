@@ -4,6 +4,16 @@ sidebar_position: 3
 
 # NPM CLI
 
+## Release: 2.1.13
+New Features
+>
+- Support for Robot enhanced format
+
+Bug Fixes
+>
+- Cucumber: duration of hooks should be added to the duration of the first/last step
+- 'npx railflow -v' command does not show the version
+
 ## Release: 2.1.12
 New Features
 >
