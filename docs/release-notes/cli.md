@@ -4,6 +4,13 @@ sidebar_position: 3
 
 # NPM CLI
 
+## Release: 2.1.14
+
+Bug Fixes
+>
+- "No file attached or upload size was exceeded." error happens under some conditions
+- Allure: error stack trace is not displayed in TR if error happens outside the test steps
+
 ## Release: 2.1.13
 New Features
 >
