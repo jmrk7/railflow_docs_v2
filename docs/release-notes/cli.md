@@ -4,6 +4,12 @@ sidebar_position: 3
 
 # NPM CLI
 
+## Release: 2.1.15
+
+Bug Fixes
+>
+- "Incorrect test path. Must start with the name of Master Suite: Master" error while uploading results into baselines
+
 ## Release: 2.1.14
 
 Bug Fixes
