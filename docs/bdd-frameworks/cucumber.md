@@ -27,7 +27,7 @@ The example below uses chrome driver. The installation/configuration of chrome d
 
 - Maven 3
 - JDK 8
-- NodeJS v14 or higher.
+- NodeJS v14.17.0 or higher.
 - NPM
 
 

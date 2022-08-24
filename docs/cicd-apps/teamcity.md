@@ -113,8 +113,8 @@ To ensure that test results are posted to TestRail even if the TeamCity build fa
 If you cannot use TeamCity plugin for some reason, Railflow is also available as a [NPM command line tool](https://www.npmjs.com/package/railflow). You would install Railflow NPM package just like your would install any other NPM module. Railflow NPM package can be pre-installed on the TeamCity agent, or you can install it at run-time. 
 :::
 
-:::tip Railflow node requirement
-Teamcity agents needs node 14 or higher.
+:::tip Railflow NodeJS requirement
+Teamcity agents needs NodeJS v14.17.0 or higher.
 :::
 
 To integrate a TeamCity project with Railflow, simply follow these steps

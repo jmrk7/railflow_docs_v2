@@ -9,7 +9,7 @@ Railflow's Command Line Interface (CLI) is wrapper around the TestRail REST API 
 :::
 
 ### Railflow CLI Requirements
-1. [NodeJS](https://nodejs.org) - v14 or higher.
+1. [NodeJS](https://nodejs.org) - v14.17.0 or higher.
 2. Enable TestRail API 
 
 ![TestRail site settings](/img/arch/site-settings-api.png)
