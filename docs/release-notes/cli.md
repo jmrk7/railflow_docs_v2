@@ -3,6 +3,15 @@ sidebar_position: 3
 ---
 
 # NPM CLI
+## Release: 2.1.16
+New Features
+>
+- Improve parameter logging
+
+Bug Fixes
+>
+- "Request body larger than maxBodyLength limit" error on large attachments
+- Allure reports: When test case has steps, attachments on test case level are not uploaded into TestRail
 
 ## Release: 2.1.15
 
