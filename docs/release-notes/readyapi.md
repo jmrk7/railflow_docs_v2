@@ -4,6 +4,11 @@ sidebar_position: 4
 
 # ReadyAPI
 
+## Release: 2.2
+Bug Fixes
+>
+- Fix license activation for auto-generated trial licenses
+
 ## Release: 2.1
 New Features
 >
