@@ -3,6 +3,52 @@ sidebar_position: 3
 ---
 
 # NPM CLI
+## Release: 2.1.16
+New Features
+>
+- Improve parameter logging
+
+Bug Fixes
+>
+- "Request body larger than maxBodyLength limit" error on large attachments
+- Allure reports: When test case has steps, attachments on test case level are not uploaded into TestRail
+
+## Release: 2.1.15
+
+Bug Fixes
+>
+- "Incorrect test path. Must start with the name of Master Suite: Master" error while uploading results into baselines
+
+## Release: 2.1.14
+
+Bug Fixes
+>
+- "No file attached or upload size was exceeded." error happens under some conditions
+- Allure: error stack trace is not displayed in TR if error happens outside the test steps
+
+## Release: 2.1.13
+New Features
+>
+- Support for Robot enhanced format
+
+Bug Fixes
+>
+- Cucumber: duration of hooks should be added to the duration of the first/last step
+- 'npx railflow -v' command does not show the version
+
+## Release: 2.1.12
+New Features
+>
+- Robot: Read test case ID from `testrail.id` tag
+- Add new RAILFLOW_TR_URL environment variable
+
+Bug Fixes
+>
+- Cucumber: Data tables should be displayed in test steps
+- Cucumber: "TypeError: The "data" argument must be of type string or an instance.... Received undefined" error
+- Cannot set value for custom multiselect field
+- When project does not have users and Smart Failure Assignment is set, no warning is displayed
+- "error data: Field :custom_required_field is a required field" is displayed instead of a nice validation error message when user provides empty value for a required field
 
 ## Release: 2.1.11
 New Features
