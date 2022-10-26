@@ -3,6 +3,21 @@ sidebar_position: 3
 ---
 
 # NPM CLI
+
+## Release: 2.1.17
+New Features
+>
+- Add support for Playwright reports
+- Add a new `JUnit-Steps` report type
+- Add `--attachment-max-size` switch for limiting attachment size
+- Add `--attachment-type-whitelist` and `--attachment-type-blacklist` switches for limiting attachment types allowed to be uploaded
+- Improve logging
+
+Bug Fixes
+>
+- Duplicate test cases/sections are created when test report contains sections with the same name
+- Railflow ignores license file if `RAILFLOW_LICENSE` environment variable is set
+
 ## Release: 2.1.16
 New Features
 >
