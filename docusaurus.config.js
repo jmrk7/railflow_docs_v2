@@ -38,7 +38,17 @@ const config = {
       }),
     ],
   ],
-  plugins: ["docusaurus-plugin-hotjar", "docusaurus-plugin-script-tags"],
+  plugins: [
+    "docusaurus-plugin-hotjar",
+    "docusaurus-plugin-script-tags",
+    [
+      "posthog-docusaurus",
+      {        
+        apiKey: "phc_FtJftK2TrWqi9kbAqPeVolXtQ1FZ3JIXu7AjMPhj3Dx",
+        appUrl: "https://app.posthog.com",
+      }
+    ]
+  ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
